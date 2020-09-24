@@ -1,5 +1,8 @@
 name: tests
 on:
+  push:
+    branches:
+    - test-update-tests
   schedule:
   - cron: '20 20 * * *'
 jobs:
