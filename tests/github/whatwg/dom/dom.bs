@@ -59,10 +59,6 @@ spec:html; type:element
 [[!XML]]
 [[!XML-NAMES]]
 
-<p>The term <dfn export>context object</dfn> is an alias for <a>this</a>.
-
-<p class=note>Usage of <a>context object</a> is deprecated in favor of <a>this</a>.
-
 <p>When extensions are needed, the DOM Standard can be updated accordingly, or a new standard
 can be written that hooks into the provided extensibility hooks for
 <dfn export lt="other applicable specifications">applicable specifications</dfn>.
@@ -5701,6 +5697,7 @@ constructor steps are to set <a>this</a>'s <a for=Node>node document</a> to
 [Exposed=Window]
 interface ShadowRoot : DocumentFragment {
   readonly attribute ShadowRootMode mode;
+  readonly attribute boolean delegatesFocus;
   readonly attribute SlotAssignmentMode slotAssignment;
   readonly attribute Element host;
   attribute EventHandler onslotchange;
@@ -5738,6 +5735,12 @@ null if <var>event</var>'s <a>composed flag</a> is unset and <a for=/>shadow roo
 <p>The <dfn attribute for=ShadowRoot><code>mode</code></dfn> getter steps are to return
 <a>this</a>'s <a for=ShadowRoot>mode</a>.</p>
 
+<p>The <dfn attribute for=ShadowRoot><code>delegatesFocus</code></dfn> getter steps are to return
+<a>this</a>'s <a for=ShadowRoot>delegates focus</a>.</p>
+
+<p>The <dfn attribute for=ShadowRoot><code>slotAssignment</code></dfn> getter steps are to return
+<a>this</a>'s <a for=ShadowRoot>slot assignment</a>.
+
 <p>The <dfn attribute for=ShadowRoot><code>host</code></dfn> getter steps are to return
 <a>this</a>'s <a for=DocumentFragment>host</a>.
 
@@ -5745,9 +5748,6 @@ null if <var>event</var>'s <a>composed flag</a> is unset and <a for=/>shadow roo
 <a>event handler IDL attribute</a> for the
 <dfn for=ShadowRoot export><code>onslotchange</code></dfn> <a>event handler</a>, whose
 <a>event handler event type</a> is {{HTMLSlotElement/slotchange}}.
-
-<p>The <dfn attribute for=ShadowRoot><code>slotAssignment</code></dfn> getter steps are to return
-<a>this</a>'s <a for=ShadowRoot>slot assignment</a>.
 
 <hr>
 
@@ -9849,6 +9849,34 @@ XPathEvaluator includes XPathEvaluatorBase;
 
 <p class=note>For historical reasons you can both construct {{XPathEvaluator}} and access the same
 methods on {{Document}}.
+
+
+
+<h2 id=xslt>XSLT</h2>
+
+<p class=XXX><cite>XSL Transformations (XSLT)</cite> is a language for transforming XML documents
+into other XML documents. The APIs defined in this section have been widely implemented, and are
+maintained here so that they can be updated when <cite>Web IDL</cite> changes. Complete definitions
+of these APIs remain necessary and such work is tracked and can be contributed to in
+<a href="https://github.com/whatwg/dom/issues/181">whatwg/dom#181</a>. [[XSLT]]
+
+
+<h3 id=interface-xsltprocessor>Interface {{XSLTProcessor}}</h3>
+
+<pre class=idl>
+[Exposed=Window]
+interface XSLTProcessor {
+  constructor();
+  undefined importStylesheet(Node style);
+  [CEReactions] DocumentFragment transformToFragment(Node source, Document output);
+  [CEReactions] Document transformToDocument(Node source);
+  undefined setParameter([LegacyNullToEmptyString] DOMString namespaceURI, DOMString localName, any value);
+  any getParameter([LegacyNullToEmptyString] DOMString namespaceURI, DOMString localName);
+  undefined removeParameter([LegacyNullToEmptyString] DOMString namespaceURI, DOMString localName);
+  undefined clearParameters();
+  undefined reset();
+};
+</pre>
 
 
 

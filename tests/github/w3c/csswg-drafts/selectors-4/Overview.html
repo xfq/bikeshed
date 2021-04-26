@@ -873,7 +873,9 @@ on screen, on paper, etc.
     <li>
      <a href="#resource-pseudos"><span class="secno">11</span> <span class="content"> Resource State Pseudos</span></a>
      <ol class="toc">
-      <li><a href="#video-state"><span class="secno">11.1</span> <span class="content"> Video/Audio Play State: the <span class="css">:playing</span> and <span class="css">:paused</span> pseudo-classes</span></a>
+      <li><a href="#video-state"><span class="secno">11.1</span> <span class="content"> Media Playback State: the <span class="css">:playing</span>, <span class="css">:paused</span>, and <span class="css">:seeking</span> pseudo-classes</span></a>
+      <li><a href="#media-loading-state"><span class="secno">11.2</span> <span class="content"> Media Loading State: the <span class="css">:buffering</span> and <span class="css">:stalled</span> pseudo-classes</span></a>
+      <li><a href="#sound-state"><span class="secno">11.3</span> <span class="content"> Sound State: the <span class="css">:muted</span> and <span class="css">:volume-locked</span> pseudo-classes</span></a>
      </ol>
     <li>
      <a href="#input-pseudos"><span class="secno">12</span> <span class="content"> The Input Pseudo-classes</span></a>
@@ -2678,19 +2680,46 @@ the default <a class="css" data-link-type="maybe" href="#focus-pseudo" id="ref-f
    <p>The pseudo-classes in this section apply to elements that represent loaded resources,
 	particularly images/videos,
 	and allow authors to select them based on some quality of their state.</p>
-   <h3 class="heading settled" data-level="11.1" id="video-state"><span class="secno">11.1. </span><span class="content"> Video/Audio Play State: the <a class="css" data-link-type="maybe" href="#selectordef-playing" id="ref-for-selectordef-playing">:playing</a> and <a class="css" data-link-type="maybe" href="#selectordef-paused" id="ref-for-selectordef-paused">:paused</a> pseudo-classes</span><a class="self-link" href="#video-state"></a></h3>
+   <h3 class="heading settled" data-level="11.1" id="video-state"><span class="secno">11.1. </span><span class="content"> Media Playback State: the <a class="css" data-link-type="maybe" href="#selectordef-playing" id="ref-for-selectordef-playing">:playing</a>, <a class="css" data-link-type="maybe" href="#selectordef-paused" id="ref-for-selectordef-paused">:paused</a>, and <a class="css" data-link-type="maybe" href="#selectordef-seeking" id="ref-for-selectordef-seeking">:seeking</a> pseudo-classes</span><a class="self-link" href="#video-state"></a></h3>
    <p>The <dfn class="dfn-paneled css" data-dfn-type="selector" data-export id="selectordef-playing">:playing</dfn> pseudo-class represents an element
-	representing an audio, video, or similar resource
 	that is capable of being “played” or “paused”,
 	when that element is “playing”.
 	(This includes both when the element is explicitly playing,
 	and when it’s temporarily stopped for some reason not connected to user intent,
 	but will automatically resume when that reason is resolved,
-	such as a “buffering” state.)</p>
-   <p>The <dfn class="dfn-paneled css" data-dfn-type="selector" data-export id="selectordef-paused">:paused</dfn> pseudo-class represents the same elements,
-	but instead match when the element is <em>not</em> “playing”.
+	such as a “buffering” or “stalled” state.)</p>
+   <p>The <dfn class="dfn-paneled css" data-dfn-type="selector" data-export id="selectordef-paused">:paused</dfn> pseudo-class represents an element
+	that is capable of being “played” or “paused”,
+	when that element is “paused” (i.e. <em>not</em> ”playing”).
 	(This includes both an explicit “paused” state,
 	and other non-playing states like “loaded, hasn’t been activated yet”, etc.)</p>
+   <p>The <dfn class="dfn-paneled css" data-dfn-type="selector" data-export id="selectordef-seeking">:seeking</dfn> pseudo-class represents an element
+	that is capable of ”seeking”
+	when that element is ”seeking”.
+	(For the <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/media.html#audio" id="ref-for-audio">audio</a></code> and <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/media.html#video" id="ref-for-video">video</a></code> elements of HTML, see <a href="https://html.spec.whatwg.org/multipage/media.html#seeking">HTML 5 §4.8.12.9 Seeking</a>.)</p>
+   <h3 class="heading settled" data-level="11.2" id="media-loading-state"><span class="secno">11.2. </span><span class="content"> Media Loading State: the <a class="css" data-link-type="maybe" href="#selectordef-buffering" id="ref-for-selectordef-buffering">:buffering</a> and <a class="css" data-link-type="maybe" href="#selectordef-stalled" id="ref-for-selectordef-stalled">:stalled</a> pseudo-classes</span><a class="self-link" href="#media-loading-state"></a></h3>
+   <p>The <dfn class="dfn-paneled css" data-dfn-type="selector" data-export id="selectordef-buffering">:buffering</dfn> pseudo-class represents an element
+	that is capable of being “played” or “paused”,
+	when that element cannot continue playing
+	because it is actively attempting to obtain <a data-link-type="dfn">media data</a> but has not yet obtained enough data to resume playback.
+	(Note that the element is still considered to be “playing” when it is “buffering”.
+	Whenever <a class="css" data-link-type="maybe" href="#selectordef-buffering" id="ref-for-selectordef-buffering①">:buffering</a> matches an element, <a class="css" data-link-type="maybe" href="#selectordef-playing" id="ref-for-selectordef-playing①">:playing</a> also matches the element.)</p>
+   <p>The <dfn class="dfn-paneled css" data-dfn-type="selector" data-export id="selectordef-stalled">:stalled</dfn> pseudo-class represents an element
+	when that element cannot continue playing
+	because it is actively attempting to obtain <a data-link-type="dfn">media data</a> but it has failed to receive any data for some amount of time.
+	For the <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/media.html#audio" id="ref-for-audio①">audio</a></code> and <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/media.html#video" id="ref-for-video①">video</a></code> elements of HTML,
+	this amount of time is the <span>stall timeout</span>. <a data-link-type="biblio" href="#biblio-html">[HTML]</a> (Note that, like with the <a class="css" data-link-type="maybe" href="#selectordef-buffering" id="ref-for-selectordef-buffering②">:buffering</a> pseudo-class,
+	the element is still considered to be “playing” when it is “stalled”.
+	Whenever <a class="css" data-link-type="maybe" href="#selectordef-stalled" id="ref-for-selectordef-stalled①">:stalled</a> matches an element, <a class="css" data-link-type="maybe" href="#selectordef-playing" id="ref-for-selectordef-playing②">:playing</a> also matches the element.)</p>
+   <h3 class="heading settled" data-level="11.3" id="sound-state"><span class="secno">11.3. </span><span class="content"> Sound State: the <a class="css" data-link-type="maybe" href="#selectordef-muted" id="ref-for-selectordef-muted">:muted</a> and <a class="css" data-link-type="maybe" href="#selectordef-volume-locked" id="ref-for-selectordef-volume-locked">:volume-locked</a> pseudo-classes</span><a class="self-link" href="#sound-state"></a></h3>
+   <p>The <dfn class="dfn-paneled css" data-dfn-type="selector" data-export id="selectordef-muted">:muted</dfn> pseudo-class represents
+	an element capable of making sound
+	when that element is “muted“.
+	(For the <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/media.html#audio" id="ref-for-audio②">audio</a></code> and <code><a data-link-type="element" href="https://html.spec.whatwg.org/multipage/media.html#video" id="ref-for-video②">video</a></code> elements of HTML, see <a data-link-type="dfn" href="https://w3c.github.io/mediacapture-main/#track-muted" id="ref-for-track-muted">muted</a>. <a data-link-type="biblio" href="#biblio-html">[HTML]</a>)</p>
+   <p>The <dfn class="dfn-paneled css" data-dfn-type="selector" data-export id="selectordef-volume-locked">:volume-locked</dfn> pseudo-class represents
+	an element capable of making sound
+	when programmatically changing the element’s volume
+	does not change the element’s <a data-link-type="dfn">effective media volume</a>.</p>
    <h2 class="heading settled" data-level="12" id="input-pseudos"><span class="secno">12. </span><span class="content"> The Input Pseudo-classes</span><a class="self-link" href="#input-pseudos"></a></h2>
    <p>The pseudo-classes in this section mostly apply to elements that take user input,
 	such as HTML’s <a data-link-type="element" href="https://html.spec.whatwg.org/multipage/input.html#the-input-element" id="ref-for-the-input-element①">input</a> element.</p>
@@ -3751,7 +3780,7 @@ they must be treated as matching nothing, and are <dfn class="dfn-paneled" data-
    <h3 class="heading settled" data-level="19.3" id="changes-2013"><span class="secno">19.3. </span><span class="content"> Changes since the 2 May 2013 Working Draft</span><a class="self-link" href="#changes-2013"></a></h3>
    <p>Significant changes since the <a href="https://www.w3.org/TR/2013/WD-selectors4-20130502/">2 May 2013 Working Draft</a> include:</p>
    <ul>
-    <li>Added the <a class="css" data-link-type="maybe" href="#target-within-pseudo" id="ref-for-target-within-pseudo③">:target-within</a>, <a class="css" data-link-type="maybe" href="#focus-within-pseudo" id="ref-for-focus-within-pseudo②">:focus-within</a>, <a class="css" data-link-type="maybe" href="#focus-visible-pseudo" id="ref-for-focus-visible-pseudo⑥">:focus-visible</a>, <a class="css" data-link-type="maybe" href="#selectordef-playing" id="ref-for-selectordef-playing①">:playing</a>, and <a class="css" data-link-type="maybe" href="#selectordef-paused" id="ref-for-selectordef-paused①">:paused</a> pseudo-classes. 
+    <li>Added the <a class="css" data-link-type="maybe" href="#target-within-pseudo" id="ref-for-target-within-pseudo③">:target-within</a>, <a class="css" data-link-type="maybe" href="#focus-within-pseudo" id="ref-for-focus-within-pseudo②">:focus-within</a>, <a class="css" data-link-type="maybe" href="#focus-visible-pseudo" id="ref-for-focus-visible-pseudo⑥">:focus-visible</a>, <a class="css" data-link-type="maybe" href="#selectordef-playing" id="ref-for-selectordef-playing③">:playing</a>, and <a class="css" data-link-type="maybe" href="#selectordef-paused" id="ref-for-selectordef-paused①">:paused</a> pseudo-classes. 
     <li>Added a zero-specificity <a class="css" data-link-type="maybe" href="#selectordef-matches" id="ref-for-selectordef-matches①">:matches()</a>-type pseudo-class, with name TBD. 
     <li>Replaced subject indicator (<span class="css">!</span>) feature with <a class="css" data-link-type="maybe" href="#has-pseudo" id="ref-for-has-pseudo⑦">:has()</a>. 
     <li>Replaced the <span class="css">:nth-match()</span> and <span class="css">:nth-last-match()</span> selectors
@@ -3959,6 +3988,7 @@ as selectors do not provide any ability not already possible by walking the DOM 
    <li><a href="#typedef-attr-matcher">&lt;attr-matcher></a><span>, in §17</span>
    <li><a href="#typedef-attr-modifier">&lt;attr-modifier></a><span>, in §17</span>
    <li><a href="#blank-pseudo">:blank</a><span>, in §12.3.1</span>
+   <li><a href="#selectordef-buffering">:buffering</a><span>, in §11.2</span>
    <li><a href="#checked-pseudo">:checked</a><span>, in §12.2.1</span>
    <li><a href="#child-combinator">child combinator</a><span>, in §14.2</span>
    <li><a href="#typedef-class-selector">&lt;class-selector></a><span>, in §17</span>
@@ -4022,6 +4052,7 @@ as selectors do not provide any ability not already possible by walking the DOM 
    <li><a href="#match-a-selector-against-a-pseudo-element">match a selector against a pseudo-element</a><span>, in §18.4</span>
    <li><a href="#match-a-selector-against-a-tree">match a selector against a tree</a><span>, in §18.5</span>
    <li><a href="#selectordef-matches">:matches()</a><span>, in §4.2</span>
+   <li><a href="#selectordef-muted">:muted</a><span>, in §11.3</span>
    <li><a href="#next-sibling-combinator">next-sibling combinator</a><span>, in §14.3</span>
    <li><a href="#negation-pseudo">:not()</a><span>, in §4.3</span>
    <li><a href="#typedef-ns-prefix">&lt;ns-prefix></a><span>, in §17</span>
@@ -4064,6 +4095,7 @@ as selectors do not provide any ability not already possible by walking the DOM 
    <li><a href="#relative-selector">scope-relative</a><span>, in §3.4</span>
    <li><a href="#scoping-element">scoping element</a><span>, in §3.3</span>
    <li><a href="#scoping-root">scoping root</a><span>, in §3.3</span>
+   <li><a href="#selectordef-seeking">:seeking</a><span>, in §11.1</span>
    <li><a href="#selector">selector</a><span>, in §3.1</span>
    <li><a href="#typedef-selector-list">&lt;selector-list></a><span>, in §17</span>
    <li><a href="#selector-list">selector list</a><span>, in §3.1</span>
@@ -4071,6 +4103,7 @@ as selectors do not provide any ability not already possible by walking the DOM 
    <li><a href="#simple">simple selector</a><span>, in §3.1</span>
    <li><a href="#typedef-simple-selector-list">&lt;simple-selector-list></a><span>, in §17</span>
    <li><a href="#specificity">specificity</a><span>, in §16</span>
+   <li><a href="#selectordef-stalled">:stalled</a><span>, in §11.2</span>
    <li><a href="#structural-pseudo-classes">structural pseudo-classes</a><span>, in §13</span>
    <li><a href="#typedef-subclass-selector">&lt;subclass-selector></a><span>, in §17</span>
    <li><a href="#selector-subject">subject</a><span>, in §3.1</span>
@@ -4088,6 +4121,7 @@ as selectors do not provide any ability not already possible by walking the DOM 
    <li><a href="#valid-pseudo">:valid</a><span>, in §12.3.2</span>
    <li><a href="#virtual-scoping-root">virtual scoping root</a><span>, in §3.3</span>
    <li><a href="#visited-pseudo">:visited</a><span>, in §8.2</span>
+   <li><a href="#selectordef-volume-locked">:volume-locked</a><span>, in §11.3</span>
    <li><a href="#where-pseudo">:where()</a><span>, in §4.4</span>
    <li><a href="#whitespace">White space</a><span>, in §3.7</span>
    <li><a href="#typedef-wq-name">&lt;wq-name></a><span>, in §17</span>
@@ -4502,6 +4536,17 @@ User Action Pseudo-classes</a>
 The Hyperlink Pseudo-class: :any-link</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-audio">
+   <a href="https://html.spec.whatwg.org/multipage/media.html#audio">https://html.spec.whatwg.org/multipage/media.html#audio</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-audio">11.1. 
+Media Playback State: the :playing, :paused, and :seeking pseudo-classes</a>
+    <li><a href="#ref-for-audio①">11.2. 
+Media Loading State: the :buffering and :stalled pseudo-classes</a>
+    <li><a href="#ref-for-audio②">11.3. 
+Sound State: the :muted and :volume-locked pseudo-classes</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-the-button-element">
    <a href="https://html.spec.whatwg.org/multipage/form-elements.html#the-button-element">https://html.spec.whatwg.org/multipage/form-elements.html#the-button-element</a><b>Referenced in:</b>
    <ul>
@@ -4689,6 +4734,17 @@ The Empty-Value Pseudo-class: :blank</a>
 The Empty-Value Pseudo-class: :blank</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="term-for-video">
+   <a href="https://html.spec.whatwg.org/multipage/media.html#video">https://html.spec.whatwg.org/multipage/media.html#video</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-video">11.1. 
+Media Playback State: the :playing, :paused, and :seeking pseudo-classes</a>
+    <li><a href="#ref-for-video①">11.2. 
+Media Loading State: the :buffering and :stalled pseudo-classes</a>
+    <li><a href="#ref-for-video②">11.3. 
+Sound State: the :muted and :volume-locked pseudo-classes</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="term-for-ascii-case-insensitive">
    <a href="https://infra.spec.whatwg.org/#ascii-case-insensitive">https://infra.spec.whatwg.org/#ascii-case-insensitive</a><b>Referenced in:</b>
    <ul>
@@ -4720,6 +4776,13 @@ Case-sensitivity</a> <a href="#ref-for-string-is②">(2)</a>
 Class selectors</a>
     <li><a href="#ref-for-string-is④">6.7. 
 ID selectors</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-track-muted">
+   <a href="https://w3c.github.io/mediacapture-main/#track-muted">https://w3c.github.io/mediacapture-main/#track-muted</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-track-muted">11.3. 
+Sound State: the :muted and :volume-locked pseudo-classes</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-x">
@@ -4837,6 +4900,7 @@ The Target Pseudo-class: :target</a>
     <ul>
      <li><span class="dfn-paneled" id="term-for-the-a-element">a</span>
      <li><span class="dfn-paneled" id="term-for-the-area-element">area</span>
+     <li><span class="dfn-paneled" id="term-for-audio">audio</span>
      <li><span class="dfn-paneled" id="term-for-the-button-element">button</span>
      <li><span class="dfn-paneled" id="term-for-custom-element">custom element</span>
      <li><span class="dfn-paneled" id="term-for-the-div-element">div</span>
@@ -4859,12 +4923,18 @@ The Target Pseudo-class: :target</a>
      <li><span class="dfn-paneled" id="term-for-the-span-element">span</span>
      <li><span class="dfn-paneled" id="term-for-the-textarea-element">textarea</span>
      <li><span class="dfn-paneled" id="term-for-attr-input-value">value</span>
+     <li><span class="dfn-paneled" id="term-for-video">video</span>
     </ul>
    <li>
     <a data-link-type="biblio">[INFRA]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="term-for-ascii-case-insensitive">ascii case-insensitive</span>
      <li><span class="dfn-paneled" id="term-for-string-is">identical to</span>
+    </ul>
+   <li>
+    <a data-link-type="biblio">[mediacapture-streams]</a> defines the following terms:
+    <ul>
+     <li><span class="dfn-paneled" id="term-for-track-muted">muted</span>
     </ul>
    <li>
     <a data-link-type="biblio">[SELECT]</a> defines the following terms:
@@ -4906,6 +4976,8 @@ The Target Pseudo-class: :target</a>
    <dd>Anne van Kesteren; et al. <a href="https://html.spec.whatwg.org/multipage/">HTML Standard</a>. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
    <dt id="biblio-infra">[INFRA]
    <dd>Anne van Kesteren; Domenic Denicola. <a href="https://infra.spec.whatwg.org/">Infra Standard</a>. Living Standard. URL: <a href="https://infra.spec.whatwg.org/">https://infra.spec.whatwg.org/</a>
+   <dt id="biblio-mediacapture-streams">[MEDIACAPTURE-STREAMS]
+   <dd>Cullen Jennings; et al. <a href="https://www.w3.org/TR/mediacapture-streams/">Media Capture and Streams</a>. 22 March 2021. CR. URL: <a href="https://www.w3.org/TR/mediacapture-streams/">https://www.w3.org/TR/mediacapture-streams/</a>
    <dt id="biblio-rfc2119">[RFC2119]
    <dd>S. Bradner. <a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119">https://tools.ietf.org/html/rfc2119</a>
    <dt id="biblio-select">[SELECT]
@@ -5713,8 +5785,10 @@ The Future-element Pseudo-class: :future</a> <a href="#ref-for-future-pseudo④"
    <b><a href="#selectordef-playing">#selectordef-playing</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-selectordef-playing">11.1. 
-Video/Audio Play State: the :playing and :paused pseudo-classes</a>
-    <li><a href="#ref-for-selectordef-playing①">19.3. 
+Media Playback State: the :playing, :paused, and :seeking pseudo-classes</a>
+    <li><a href="#ref-for-selectordef-playing①">11.2. 
+Media Loading State: the :buffering and :stalled pseudo-classes</a> <a href="#ref-for-selectordef-playing②">(2)</a>
+    <li><a href="#ref-for-selectordef-playing③">19.3. 
 Changes since the 2 May 2013 Working Draft</a>
    </ul>
   </aside>
@@ -5722,9 +5796,44 @@ Changes since the 2 May 2013 Working Draft</a>
    <b><a href="#selectordef-paused">#selectordef-paused</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-selectordef-paused">11.1. 
-Video/Audio Play State: the :playing and :paused pseudo-classes</a>
+Media Playback State: the :playing, :paused, and :seeking pseudo-classes</a>
     <li><a href="#ref-for-selectordef-paused①">19.3. 
 Changes since the 2 May 2013 Working Draft</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="selectordef-seeking">
+   <b><a href="#selectordef-seeking">#selectordef-seeking</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-selectordef-seeking">11.1. 
+Media Playback State: the :playing, :paused, and :seeking pseudo-classes</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="selectordef-buffering">
+   <b><a href="#selectordef-buffering">#selectordef-buffering</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-selectordef-buffering">11.2. 
+Media Loading State: the :buffering and :stalled pseudo-classes</a> <a href="#ref-for-selectordef-buffering①">(2)</a> <a href="#ref-for-selectordef-buffering②">(3)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="selectordef-stalled">
+   <b><a href="#selectordef-stalled">#selectordef-stalled</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-selectordef-stalled">11.2. 
+Media Loading State: the :buffering and :stalled pseudo-classes</a> <a href="#ref-for-selectordef-stalled①">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="selectordef-muted">
+   <b><a href="#selectordef-muted">#selectordef-muted</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-selectordef-muted">11.3. 
+Sound State: the :muted and :volume-locked pseudo-classes</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="selectordef-volume-locked">
+   <b><a href="#selectordef-volume-locked">#selectordef-volume-locked</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-selectordef-volume-locked">11.3. 
+Sound State: the :muted and :volume-locked pseudo-classes</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="enabled-pseudo">

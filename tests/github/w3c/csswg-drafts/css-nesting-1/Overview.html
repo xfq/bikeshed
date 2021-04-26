@@ -922,8 +922,8 @@ table.colortable th <c- p>{</c->
 	a <a data-link-type="dfn" href="#nesting-selector" id="ref-for-nesting-selector④">nesting selector</a> must be the first <a data-link-type="dfn" href="https://drafts.csswg.org/selectors-4/#simple" id="ref-for-simple">simple selector</a> in the first <a data-link-type="dfn" href="https://drafts.csswg.org/selectors-4/#compound" id="ref-for-compound③">compound selector</a> of the selector.
 	If the selector is a list of selectors,
 	every <a data-link-type="dfn" href="https://drafts.csswg.org/selectors-4/#complex" id="ref-for-complex">complex selector</a> in the list must be <a data-link-type="dfn" href="#nest-prefixed" id="ref-for-nest-prefixed①">nest-prefixed</a> for the selector as a whole to <span id="ref-for-nest-prefixed②">nest-prefixed</span>.</p>
-   <div class="example" id="example-ea9c9742">
-    <a class="self-link" href="#example-ea9c9742"></a> For example, the following nestings are valid: 
+   <div class="example" id="example-1ed36745">
+    <a class="self-link" href="#example-1ed36745"></a> For example, the following nestings are valid: 
 <pre class="lang-css highlight">.foo <c- p>{</c->
   <c- k>color</c-><c- p>:</c-> blue<c- p>;</c->
   &amp; > .bar <c- p>{</c-> <c- k>color</c-><c- p>:</c-> red<c- p>;</c-> <c- p>}</c->
@@ -958,7 +958,7 @@ table.colortable th <c- p>{</c->
 <c- p>}</c->
 <c- c>/* equivalent to</c->
 <c- c>   .foo { color: blue; }</c->
-<c- c>   .foo .bar .foo .baz .foo .qux { color: blue; }</c->
+<c- c>   .foo .bar .foo .baz .foo .qux { color: red; }</c->
 <c- c> */</c->
 
 .foo <c- p>{</c->

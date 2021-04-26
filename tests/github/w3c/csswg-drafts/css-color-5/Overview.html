@@ -748,7 +748,7 @@ on screen, on paper, etc.
    <h2 class="no-num no-toc no-ref" id="contents">Table of Contents</h2>
    <ol class="toc" role="directory">
     <li><a href="#intro"><span class="secno">1</span> <span class="content">Introduction</span></a>
-    <li><a href="#color-spaces-color-spaces-section"><span class="secno">2</span> <span class="content">color spaces {#color spaces-section}</span></a>
+    <li><a href="#color-spaces"><span class="secno">2</span> <span class="content">Color Spaces</span></a>
     <li><a href="#color-mix"><span class="secno">3</span> <span class="content">Mixing colors: the <span class="css">color-mix()</span> function</span></a>
     <li><a href="#colorcontrast"><span class="secno">4</span> <span class="content">Selecting the most contrasting color: the <span class="css">color-contrast()</span> function</span></a>
     <li>
@@ -832,7 +832,7 @@ on screen, on paper, etc.
 	and colors are evenly distributed.
 	However, other color spaces can be specified,
 	including ``hsl()`` or ``srgb`` if desired.</p>
-   <h2 class="heading settled" data-level="2" id="color-spaces-color-spaces-section"><span class="secno">2. </span><span class="content">color spaces {#color spaces-section}</span><a class="self-link" href="#color-spaces-color-spaces-section"></a></h2>
+   <h2 class="heading settled" data-level="2" id="color-spaces"><span class="secno">2. </span><span class="content">Color Spaces</span><a class="self-link" href="#color-spaces"></a></h2>
    <p>Mixing or otherwise combining colors
 has different results depending on the color space used.
 In some cases, the result of physically mixing two colored lights is desired
@@ -843,18 +843,18 @@ Alternatively, maximizing chroma so that color mixtures follow along the hue whe
 (CIE LCH works well for this).
 Lastly, compatibility with legacy Web content may be the most important consideration.
 (the sRGB color space, which is neither linear-light nor perceptually uniform, is the choice here).</p>
-<pre class="prod"><dfn data-dfn-type="type" data-export id="typedef-color-space">&lt;color space><a class="self-link" href="#typedef-color-space"></a></dfn> = srgb <a data-link-type="grammar" href="https://drafts.csswg.org/css-values-4/#comb-one" id="ref-for-comb-one">|</a> hsl <a data-link-type="grammar" href="https://drafts.csswg.org/css-values-4/#comb-one" id="ref-for-comb-one①">|</a> hwb <a data-link-type="grammar" href="https://drafts.csswg.org/css-values-4/#comb-one" id="ref-for-comb-one②">|</a> xyz <a data-link-type="grammar" href="https://drafts.csswg.org/css-values-4/#comb-one" id="ref-for-comb-one③">|</a> lab <a data-link-type="grammar" href="https://drafts.csswg.org/css-values-4/#comb-one" id="ref-for-comb-one④">|</a> lch
+<pre class="prod"><dfn class="dfn-paneled" data-dfn-type="type" data-export id="typedef-color-space">&lt;color-space></dfn> = srgb <a data-link-type="grammar" href="https://drafts.csswg.org/css-values-4/#comb-one" id="ref-for-comb-one">|</a> hsl <a data-link-type="grammar" href="https://drafts.csswg.org/css-values-4/#comb-one" id="ref-for-comb-one①">|</a> hwb <a data-link-type="grammar" href="https://drafts.csswg.org/css-values-4/#comb-one" id="ref-for-comb-one②">|</a> xyz <a data-link-type="grammar" href="https://drafts.csswg.org/css-values-4/#comb-one" id="ref-for-comb-one③">|</a> lab <a data-link-type="grammar" href="https://drafts.csswg.org/css-values-4/#comb-one" id="ref-for-comb-one④">|</a> lch
 </pre>
-   <p>When no <a data-link-type="dfn">color space</a> is specified,
+   <p>When no <a class="production css" data-link-type="type" href="#typedef-color-space" id="ref-for-typedef-color-space">&lt;color-space></a> is specified,
 the mixing is done in the <span class="css">lch</span> color space.
-The <span>xyz</span> color space is CIE XYZ, with a D50 whitepoint, and allows computation to be done
+The <a data-link-type="dfn">xyz</a> color space is CIE XYZ, with a D50 whitepoint, and allows computation to be done
 in a linear-light-intensity space.</p>
    <h2 class="heading settled" data-level="3" id="color-mix"><span class="secno">3. </span><span class="content">Mixing colors: the <a class="css" data-link-type="maybe" href="#funcdef-color-mix" id="ref-for-funcdef-color-mix①">color-mix()</a> function</span><a class="self-link" href="#color-mix"></a></h2>
    <p>This function takes two <a class="production css" data-link-type="type" href="https://drafts.csswg.org/css-color-3/#valuea-def-color" id="ref-for-valuea-def-color">&lt;color></a> specifications
 	and returns the result of mixing them,
-	in a given <a data-link-type="dfn">color space</a>,
+	in a given <a class="production css" data-link-type="type" href="#typedef-color-space" id="ref-for-typedef-color-space①">&lt;color-space></a>,
 	by a specified amount.</p>
-<pre class="prod"><dfn class="dfn-paneled" data-dfn-type="function" data-export id="funcdef-color-mix">color-mix()</dfn> = color-mix( in <span class="production">&lt;&lt;color space>></span> <a data-link-type="grammar" href="https://drafts.csswg.org/css-values-4/#comb-comma" id="ref-for-comb-comma">,</a> [ <a class="production" data-link-type="type" href="https://drafts.csswg.org/css-color-3/#valuea-def-color" id="ref-for-valuea-def-color①">&lt;color></a> <a data-link-type="grammar" href="https://drafts.csswg.org/css-values-4/#comb-all" id="ref-for-comb-all">&amp;&amp;</a> <a class="production" data-link-type="type" href="https://drafts.csswg.org/css-values-3/#percentage-value" id="ref-for-percentage-value">&lt;percentage></a><a data-link-type="grammar" href="https://drafts.csswg.org/css-values-4/#mult-opt" id="ref-for-mult-opt">?</a> ]<a data-link-type="grammar" href="https://drafts.csswg.org/css-values-4/#mult-comma" id="ref-for-mult-comma">#{2}</a>)
+<pre class="prod"><dfn class="dfn-paneled" data-dfn-type="function" data-export id="funcdef-color-mix">color-mix()</dfn> = color-mix( in <a class="production" data-link-type="type" href="#typedef-color-space" id="ref-for-typedef-color-space②">&lt;color-space></a> <a data-link-type="grammar" href="https://drafts.csswg.org/css-values-4/#comb-comma" id="ref-for-comb-comma">,</a> [ <a class="production" data-link-type="type" href="https://drafts.csswg.org/css-color-3/#valuea-def-color" id="ref-for-valuea-def-color①">&lt;color></a> <a data-link-type="grammar" href="https://drafts.csswg.org/css-values-4/#comb-all" id="ref-for-comb-all">&amp;&amp;</a> <a class="production" data-link-type="type" href="https://drafts.csswg.org/css-values-3/#percentage-value" id="ref-for-percentage-value">&lt;percentage></a><a data-link-type="grammar" href="https://drafts.csswg.org/css-values-4/#mult-opt" id="ref-for-mult-opt">?</a> ]<a data-link-type="grammar" href="https://drafts.csswg.org/css-values-4/#mult-comma" id="ref-for-mult-comma">#{2}</a>)
 </pre>
    <p>The percentages are normalized as follows:</p>
    <ol>
@@ -878,7 +878,7 @@ in a linear-light-intensity space.</p>
    <p>After normalizing both percentages, the result is produced via the following algorithm:</p>
    <ol>
     <li data-md>
-     <p>Both colors are converted to the specified <a data-link-type="dfn">color space</a>.
+     <p>Both colors are converted to the specified <a class="production css" data-link-type="type" href="#typedef-color-space" id="ref-for-typedef-color-space③">&lt;color-space></a>.
 If the specified color space has a smaller gamut
 than the one in which the color to be adjusted is specified,
 gamut mapping will occur.</p>
@@ -1089,7 +1089,7 @@ will be chosen to produce a single eventual solution. <a href="https://github.co
    <p>Unless otherwise specified,
 	the adjustment is done in the <span class="css">lch</span> color space.</p>
    <p>Multiple color functions can be specified.</p>
-<pre class="prod"><dfn data-dfn-type="function" data-export id="funcdef-color-adjust">color-adjust()<a class="self-link" href="#funcdef-color-adjust"></a></dfn> = color-adjust( <a class="production" data-link-type="type" href="https://drafts.csswg.org/css-color-3/#valuea-def-color" id="ref-for-valuea-def-color⑤">&lt;color></a> [ <a class="production" data-link-type="type" href="#typedef-color-adjuster" id="ref-for-typedef-color-adjuster">&lt;color-adjuster></a> <a data-link-type="grammar" href="https://drafts.csswg.org/css-values-4/#comb-all" id="ref-for-comb-all①">&amp;&amp;</a> [ in <span class="production">&lt;&lt;color space>></span> ]<a data-link-type="grammar" href="https://drafts.csswg.org/css-values-4/#mult-opt" id="ref-for-mult-opt②">?</a> ]<a data-link-type="grammar" href="https://drafts.csswg.org/css-values-4/#mult-opt" id="ref-for-mult-opt③">?</a> )
+<pre class="prod"><dfn data-dfn-type="function" data-export id="funcdef-color-adjust">color-adjust()<a class="self-link" href="#funcdef-color-adjust"></a></dfn> = color-adjust( <a class="production" data-link-type="type" href="https://drafts.csswg.org/css-color-3/#valuea-def-color" id="ref-for-valuea-def-color⑤">&lt;color></a> [ <a class="production" data-link-type="type" href="#typedef-color-adjuster" id="ref-for-typedef-color-adjuster">&lt;color-adjuster></a> <a data-link-type="grammar" href="https://drafts.csswg.org/css-values-4/#comb-all" id="ref-for-comb-all①">&amp;&amp;</a> [ in <a class="production" data-link-type="type" href="#typedef-color-space" id="ref-for-typedef-color-space④">&lt;color-space></a> ]<a data-link-type="grammar" href="https://drafts.csswg.org/css-values-4/#mult-opt" id="ref-for-mult-opt②">?</a> ]<a data-link-type="grammar" href="https://drafts.csswg.org/css-values-4/#mult-opt" id="ref-for-mult-opt③">?</a> )
 </pre>
 <pre class="prod"><dfn class="dfn-paneled" data-dfn-type="type" data-export id="typedef-color-adjuster">&lt;color-adjuster></dfn> = [ [
       <a class="production" data-link-type="type" href="#typedef-srgb-adjuster" id="ref-for-typedef-srgb-adjuster">&lt;srgb-adjuster></a> <a data-link-type="grammar" href="https://drafts.csswg.org/css-values-4/#comb-one" id="ref-for-comb-one⑦">|</a> <a class="production" data-link-type="type" href="#typedef-hsl-adjuster" id="ref-for-typedef-hsl-adjuster">&lt;hsl-adjuster></a> <a data-link-type="grammar" href="https://drafts.csswg.org/css-values-4/#comb-one" id="ref-for-comb-one⑧">|</a> <a class="production" data-link-type="type" href="#typedef-hwb-adjuster" id="ref-for-typedef-hwb-adjuster">&lt;hwb-adjuster></a>
@@ -1104,14 +1104,14 @@ will be chosen to produce a single eventual solution. <a href="https://github.co
 <dfn class="dfn-paneled" data-dfn-type="type" data-export id="typedef-hue-adjuster">&lt;hue-adjuster></dfn> = hue [shorter <a data-link-type="grammar" href="https://drafts.csswg.org/css-values-4/#comb-one" id="ref-for-comb-one②⑤">|</a> longer <a data-link-type="grammar" href="https://drafts.csswg.org/css-values-4/#comb-one" id="ref-for-comb-one②⑥">|</a> increasing <a data-link-type="grammar" href="https://drafts.csswg.org/css-values-4/#comb-one" id="ref-for-comb-one②⑦">|</a> decreasing <a data-link-type="grammar" href="https://drafts.csswg.org/css-values-4/#comb-one" id="ref-for-comb-one②⑧">|</a> specified ]<a data-link-type="grammar" href="https://drafts.csswg.org/css-values-4/#mult-opt" id="ref-for-mult-opt⑤">?</a>
 </pre>
    <p>The meaning of the adjusters is defined by color space.
-	For example, if the <a data-link-type="dfn">color space</a> is <span>hsl</span>,
+	For example, if the <a class="production css" data-link-type="type" href="#typedef-color-space" id="ref-for-typedef-color-space⑤">&lt;color-space></a> is <a data-link-type="dfn">hsl</a>,
 	hue means the HSL hue, which is not the same as the LCH hue;
 	if the color space is <span>lch</span>,
 	lightness means the LCH Lightness, which is the same as Lab lightness,
 	but different to the HSL Lightness.</p>
-   <p>Only the <a data-link-type="dfn">color-adjuster</a>s defined for a given <span>color space</span> are available.
+   <p>Only the <a data-link-type="dfn">color-adjuster</a>s defined for a given <a class="production css" data-link-type="type" href="#typedef-color-space" id="ref-for-typedef-color-space⑥">&lt;color-space></a> are available.
 	For example, it is not possible to use the HWB <span>whiteness</span> adjuster unless the color space is <span>hwb</span>.
-	The alpha adjuster is available on any <span>color space</span>.</p>
+	The alpha adjuster is available on any <span class="production" id="ref-for-typedef-color-space⑦">&lt;color-space></span>.</p>
    <p class="note" role="note"><span>Note:</span> not all <a data-link-type="dfn">color-adjuster</a>s are equally useful.
 	Adjustments in LCH are the most useful, which is why it is the default.
 	Adjustments on the a and b axes are rarely needed.
@@ -1509,7 +1509,7 @@ to WCAG 2.1 <a href="https://www.w3.org/TR/WCAG21/#contrast-minimum">section 1.4
    <li><a href="#typedef-color-adjuster">&lt;color-adjuster></a><span>, in §5.1</span>
    <li><a href="#funcdef-color-contrast">color-contrast()</a><span>, in §4</span>
    <li><a href="#funcdef-color-mix">color-mix()</a><span>, in §3</span>
-   <li><a href="#typedef-color-space">&lt;color space></a><span>, in §2</span>
+   <li><a href="#typedef-color-space">&lt;color-space></a><span>, in §2</span>
    <li><a href="#valdef-rgb-g">g</a><span>, in §5.2.1</span>
    <li>
     h
@@ -1646,7 +1646,7 @@ to WCAG 2.1 <a href="https://www.w3.org/TR/WCAG21/#contrast-minimum">section 1.4
   <aside class="dfn-panel" data-for="term-for-comb-one">
    <a href="https://drafts.csswg.org/css-values-4/#comb-one">https://drafts.csswg.org/css-values-4/#comb-one</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-comb-one">2. color spaces {#color spaces-section}</a> <a href="#ref-for-comb-one①">(2)</a> <a href="#ref-for-comb-one②">(3)</a> <a href="#ref-for-comb-one③">(4)</a> <a href="#ref-for-comb-one④">(5)</a>
+    <li><a href="#ref-for-comb-one">2. Color Spaces</a> <a href="#ref-for-comb-one①">(2)</a> <a href="#ref-for-comb-one②">(3)</a> <a href="#ref-for-comb-one③">(4)</a> <a href="#ref-for-comb-one④">(5)</a>
     <li><a href="#ref-for-comb-one⑤">4. Selecting the most contrasting color: the color-contrast() function</a> <a href="#ref-for-comb-one⑥">(2)</a>
     <li><a href="#ref-for-comb-one⑦">5.1. Adjusting colors: the color-adjust function</a> <a href="#ref-for-comb-one⑧">(2)</a> <a href="#ref-for-comb-one⑨">(3)</a> <a href="#ref-for-comb-one①⓪">(4)</a> <a href="#ref-for-comb-one①①">(5)</a> <a href="#ref-for-comb-one①②">(6)</a> <a href="#ref-for-comb-one①③">(7)</a> <a href="#ref-for-comb-one①④">(8)</a> <a href="#ref-for-comb-one①⑤">(9)</a> <a href="#ref-for-comb-one①⑥">(10)</a> <a href="#ref-for-comb-one①⑦">(11)</a> <a href="#ref-for-comb-one①⑧">(12)</a> <a href="#ref-for-comb-one①⑨">(13)</a> <a href="#ref-for-comb-one②⓪">(14)</a> <a href="#ref-for-comb-one②①">(15)</a> <a href="#ref-for-comb-one②②">(16)</a> <a href="#ref-for-comb-one②③">(17)</a> <a href="#ref-for-comb-one②④">(18)</a> <a href="#ref-for-comb-one②⑤">(19)</a> <a href="#ref-for-comb-one②⑥">(20)</a> <a href="#ref-for-comb-one②⑦">(21)</a> <a href="#ref-for-comb-one②⑧">(22)</a>
     <li><a href="#ref-for-comb-one②⑨">5.2.1. Relative RGB colors</a> <a href="#ref-for-comb-one③⓪">(2)</a> <a href="#ref-for-comb-one③①">(3)</a>
@@ -1738,6 +1738,14 @@ The CSS WG expects that the best aspects of each
 will be chosen to produce a single eventual solution. <a href="https://github.com/w3c/csswg-drafts/issues/3187">&lt;https://github.com/w3c/csswg-drafts/issues/3187></a><a href="#issue-f41f57aa"> ↵ </a></div>
    <div class="issue"> A future version of this specification may define a relative syntax for <a class="css" data-link-type="maybe" href="https://www.w3.org/TR/css-color-4/#funcdef-color">color()</a> as well.<a href="#issue-5cce798c"> ↵ </a></div>
   </div>
+  <aside class="dfn-panel" data-for="typedef-color-space">
+   <b><a href="#typedef-color-space">#typedef-color-space</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-typedef-color-space">2. Color Spaces</a>
+    <li><a href="#ref-for-typedef-color-space①">3. Mixing colors: the color-mix() function</a> <a href="#ref-for-typedef-color-space②">(2)</a> <a href="#ref-for-typedef-color-space③">(3)</a>
+    <li><a href="#ref-for-typedef-color-space④">5.1. Adjusting colors: the color-adjust function</a> <a href="#ref-for-typedef-color-space⑤">(2)</a> <a href="#ref-for-typedef-color-space⑥">(3)</a> <a href="#ref-for-typedef-color-space⑦">(4)</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="funcdef-color-mix">
    <b><a href="#funcdef-color-mix">#funcdef-color-mix</a></b><b>Referenced in:</b>
    <ul>

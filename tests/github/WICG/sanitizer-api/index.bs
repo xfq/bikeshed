@@ -130,14 +130,18 @@ handle additional, application-specific use cases.
     SecureContext
   ] interface Sanitizer {
     constructor(optional SanitizerConfig config = {});
+
     DocumentFragment sanitize(SanitizerInput input);
     DOMString sanitizeToString(SanitizerInput input);
+
+    SanitizerConfig config();
+    static SanitizerConfig defaultConfig();
   };
 </pre>
 
 * The <dfn constructor for=Sanitizer lt="Sanitizer(config)">
     <code>new Sanitizer(<var>config</var>)</code></dfn> constructor steps
-    are to create a new Sanitizer instance, and to retains a copy of |config|
+    are to create a new Sanitizer instance, and to retain a copy of |config|
     as its [=configuration object=].
 * The <dfn method for=Sanitizer><code>sanitize(<var>input</var>)</code></dfn>
     method steps are to return the result of running the [=sanitize=]
@@ -145,11 +149,23 @@ handle additional, application-specific use cases.
 * The <dfn method for=Sanitizer><code>sanitizeToString(<var>input</var>)</code></dfn>
     method steps are to return the result of running [=sanitizeToString=]
     algorithm on |input|.
+* The <dfn method for=Sanitizer><code>config()</code></dfn> method steps are
+    to return the result of running the [=query the sanitizer config=]
+    algorithm. It essentially returns a copy of the Sanitizer's
+    [=configuration object=], with some degree of normalization.
+* The value of the static
+    <dfn method for=Sanitizer><code>defaultConfig()</code></dfn> method steps
+    are to return the value of the [=default configuration=] object.
 
 Example:
 ```js
   // Replace an element's content from unsanitized input:
   element.replaceChildren(new Sanitizer().sanitize(userControlledInput));
+
+  // defaultConfig() and new Sanitizer().config should be the same.
+  // (For illustration purposes only. There are better ways of implementing
+  // object equality in JavaScript.)
+  JSON.stringify(Sanitizer.defaultConfig()) == JSON.stringify(new Sanitizer().config());  // true
 ```
 
 ## Input Types ## {#inputs}
@@ -238,6 +254,32 @@ Examples:
 
   // Scripts will be blocked: "abc alert(1) def"
   new Sanitizer().sanitizeToString("abc <script>alert(1)</script> def");
+```
+
+A sanitizer's configuration can be queried using the
+[=query the sanitizer config=] method.
+
+Examples:
+```js
+  // Does the default config allow script elements?
+  Sanitizer.defaultConfig().allowElements.includes("script")  // false
+
+  // We found a Sanitizer instance. Does it have an allow-list configured?
+  const a_sanitizer = ...;
+  !!a_sanitizer.config().allowElements // true, if an allowElements list is configured
+
+  // If it does have an allow elements list, does it include the <div> element?
+  a_sanitizer.config().allowElements.includes("div")  // true, if "div" is in allowElements.
+
+  // Note that the config attribute might do some normaliztion. E.g., it won't
+  // contain key/value pairs that are not declare in the IDL.
+  Object.keys(new Sanitizer({madeUpDictionaryKey: "Hello"}).config())  // []
+
+  // As a Sanitizer's config describes its operation, a new sanitizer with
+  // another instance's configuration should behave identically.
+  // (For illustration purposes only. It would make more sense to just use a directly.)
+  const a = /* ... a Sanitizer we found somewhere ... */;
+  const b = new Sanitizer(a.config());  // b should behave the same as a.
 ```
 
 ### Attribute Match Lists ### {#attr-match-list}
@@ -384,6 +426,18 @@ To <dfn>handle funky elements</dfn> on a given |element|, run these steps:
     1. Remove the `formaction` attribute from |element|.
 </div>
 
+<div algorithm="query the sanitizer config">
+To <dfn>query the sanitizer config</dfn> of a given sanitizer instance,
+run these steps:
+  1. Let |sanitizer| be the current Sanitizer.
+  2. Let |config| be |sanitizer|'s [=configuration object=], or the
+     [=default configuration=] if no [=configuration object=] was given.
+  3. Let |result| be a newly constructed SanitizerOptions dictionary.
+  4. For any non-empty member of |config| whose key is declared in
+     SanitizerOptions, copy the value to |result|.
+  5. Return |result|.
+</div>
+
 ### The Effective Configuration ### {#configuration}
 
 A Sanitizer is potentially complex, so we will define a helper
@@ -392,7 +446,7 @@ convenience and allows us to explain a Sanitizer's operation in two steps:
 One, how to derive the effective configuration, and two, define the
 Sanitzer's operation based on it.
 
-An <dfn>effective configuration</dfn> maps a given |element| or a given pair of
+An effective configuration maps a given |element| or a given pair of
 |element| and |attribute| to a [=sanitize action=].
 
 A <dfn>sanitize action</dfn> can have the values `keep`, `drop`, or `block`.
@@ -449,7 +503,7 @@ The <dfn>element kind</dfn> of an |element| is one of `regular`, `unknown`, or `
 <div algorithm="attribute kind">
 Similarly, the <dfn>attribute kind</dfn> of an |attribute| is one of `regular`
 or `unknown`. Let <var ignore>attribute kind</var> be:
-  - `unknown`, if the [[HTML]] specifcation does not assign any meaning to
+  - `unknown`, if the [[HTML]] specification does not assign any meaning to
      |attribute|'s name.
   - `regular`, otherwise.
 </div>
@@ -600,16 +654,70 @@ describes, as is Internet Explorer's {{window.toStaticHTML()}}.
 
 # Appendix A: Built-in Constants # {#constants}
 
-<em>This appendix is normative.</em>
+<em>This appendix is normative, except where explicitly noted otherwise.</em>
 
 These constants define core behaviour of the Sanitizer algorithm.
 
-Note: The normative values of these constants are found below. They have
-    been derived with the [[DEFAULTS]] script. It is expected that these
-    values will be updated to include additional HTML elements as they are
+## Built-ins Justification ## {#builtins-justification}
+
+<em>This subsection is super duper non-normative.</em>
+
+Note: The normative values of these constants are found below. The derivation
+    of these are explained here, with an implementation in the [[DEFAULTS]]
+    script. It is expected that these values will change before this
+    specification is finalized. Also, we expect these
+    to be updated to include additional HTML elements as they are
     introduced in user agents.
 
-## The Baseline Element Allow List ## {#baseline-element-allow-list}
+For the purpose of this Sanitizer API, [[HTML]] constructs fall into one of
+four classes, where the first defines the baseline, and the first, second,
+plus the third define the default:
+
+1. Elements and attributes that (directly) execute script.
+   In other words, elements and attributes that are unconditionally script-ish.
+2. Legacy and "difficult" elements and attributes.
+  Examples are the `<plaintext>` `<xmp>` and elements, which have special
+  parsing rules attached to them. These are not dangerous _per se_, but they
+  have contributed to existing vulnerability.
+3. Elements and attributes that we feel rarely make sense in user-supplied
+  content.
+4. All the rest.
+
+Specifically:
+
+1. Script-ish constructs:
+  - The {{HTMLScriptElement}}, which proudly executes script as its sole purpose.
+  - All [event handler attributes]((https://html.spec.whatwg.org/#event-handler-attributes),
+    since these also execute script.
+  - {{HTMLIFrameElement}}, which loads arbitrary HTML content and therefor also script.
+  - The legacy {{HTMLObjectElement}} and {{HTMLEmbedElement}}, which load
+    non-HTML active content. Also, `<object>`'s side-kick {{HTMLParamElement}}.
+  - The [no-longer conforming](https://html.spec.whatwg.org/#non-conforming-features)
+    `<frame>`, `<frameset>`, and `<applet>` tags, which are
+    outdated versions companions of several elements listed above.
+  - The `<noscript>`, `<noframes>`, `<noembed>`, and `<nolayer>` elements.
+    These, by themselves, are arguably not script-ish, but they are companions
+    to elements listed above, and make no sense on their own.
+  - Also, the {{HTMLBaseElement}}, as this effectively modifies interpretation
+    of other URLs.
+
+2. Legacy and "difficult" elements.
+  - Special parsing behaviour. This is not dangerous in its own right, but has
+    contributed to mXSS-style attacks. This includes:
+      - `<plaintext>` (Which parses in [=PLAINTEXT state=].)
+      - The non-conforming [`<xmp>`](https://html.spec.whatwg.org/#xmp) element.
+  - Legacy elements:
+      - `<image>` ([which is parsed as `<img>`](https://html.spec.whatwg.org/#parsing-main-inbody)).
+      - `<basefont>`
+
+3. Constructs unlikely to be beneficial in user-supplied content:
+  - The {{HTMLTemplateElement}}, which introduces a new template to be used
+    by JavaScript, and its {{HTMLSlotElement}} accomplice.
+  - The frame-like [HTMLPortalElement](https://wicg.github.io/portals/).
+  - {{HTMLDataElement}},
+  - The (deprecated) [allowpaymentrequest](https://www.w3.org/TR/payment-request/) attribute.
+
+## The Baseline Element Allow List ## {#baseline-elements}
 
 The built-in <dfn>baseline element allow list</dfn> has the following value:
 
@@ -618,7 +726,7 @@ path: resources/baseline-element-allow-list.json
 highlight: js
 </pre>
 
-## The Baseline Attribute Allow List ## {#baseline-attribute-allow-list}
+## The Baseline Attribute Allow List ## {#baseline-attributes}
 
 The <dfn>baseline attribute allow list</dfn> has the following value:
 

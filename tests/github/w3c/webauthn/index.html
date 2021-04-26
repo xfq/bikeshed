@@ -1,10 +1,10 @@
 <!doctype html><html lang="en">
  <head>
   <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  <title>Web Authentication: An API for accessing Public Key Credentials - Level 2</title>
+  <title>Web Authentication: An API for accessing Public Key Credentials - Level 3</title>
   <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
   <meta content="ED" name="w3c-status">
-  <link href="https://www.w3.org/TR/webauthn-2/" rel="canonical">
+  <link href="https://www.w3.org/TR/webauthn-3/" rel="canonical">
 <style type="text/css">
 body {
     counter-reset: table;
@@ -369,7 +369,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <header>
     <p data-fill-with="logo"><a href="https://www.w3.org/"><img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"></a> </p>
-    <h1>Web Authentication:<br>An API for accessing Public Key Credentials<br>Level 2</h1>
+    <h1>Web Authentication:<br>An API for accessing Public Key Credentials<br>Level 3</h1>
     <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="1970-01-01">1 January 1970</time></span></h2>
    </header>
    <div data-fill-with="spec-metadata">
@@ -377,14 +377,9 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <dt>This version:
      <dd><a class="u-url" href="https://w3c.github.io/webauthn/">https://w3c.github.io/webauthn/</a>
      <dt>Latest published version:
-     <dd><a href="https://www.w3.org/TR/webauthn-2/">https://www.w3.org/TR/webauthn-2/</a>
+     <dd><a href="https://www.w3.org/TR/webauthn-3/">https://www.w3.org/TR/webauthn-3/</a>
      <dt>Previous Versions:
-     <dd><a href="https://www.w3.org/TR/2020/CR-webauthn-2-20201222/" rel="prev">https://www.w3.org/TR/2020/CR-webauthn-2-20201222/</a>
-     <dd><a href="https://www.w3.org/TR/2020/WD-webauthn-2-20201216/" rel="prev">https://www.w3.org/TR/2020/WD-webauthn-2-20201216/</a>
-     <dd><a href="https://www.w3.org/TR/2020/WD-webauthn-2-20201116/" rel="prev">https://www.w3.org/TR/2020/WD-webauthn-2-20201116/</a>
-     <dd><a href="https://www.w3.org/TR/2020/WD-webauthn-2-20200730/" rel="prev">https://www.w3.org/TR/2020/WD-webauthn-2-20200730/</a>
-     <dd><a href="https://www.w3.org/TR/2019/WD-webauthn-2-20191126/" rel="prev">https://www.w3.org/TR/2019/WD-webauthn-2-20191126/</a>
-     <dd><a href="https://www.w3.org/TR/2019/WD-webauthn-2-20190604/" rel="prev">https://www.w3.org/TR/2019/WD-webauthn-2-20190604/</a>
+     <dd><a href="https://www.w3.org/TR/2021/REC-webauthn-2-20210408/" rel="prev">https://www.w3.org/TR/2021/REC-webauthn-2-20210408/</a>
      <dd><a href="https://www.w3.org/TR/2019/REC-webauthn-1-20190304/" rel="prev">https://www.w3.org/TR/2019/REC-webauthn-1-20190304/</a>
      <dt>Implementation Report:
      <dd><a href="https://www.w3.org/2020/12/webauthn-report.html">https://www.w3.org/2020/12/webauthn-report.html</a>
@@ -7145,7 +7140,7 @@ in case an <a data-link-type="dfn" href="#attestation-private-key" id="ref-for-a
 sufficiently large groups. This may serve as guidance about suitable batch sizes.</p>
     <li data-md>
      <p>A <a data-link-type="dfn" href="#webauthn-authenticator" id="ref-for-webauthn-authenticator①⑦">WebAuthn Authenticator</a> may be capable of dynamically generating different <a data-link-type="dfn" href="#attestation-key-pair" id="ref-for-attestation-key-pair⑧">attestation key pairs</a> (and requesting related <a data-link-type="dfn" href="#attestation-certificate" id="ref-for-attestation-certificate①⑨">certificates</a>) per-<a data-link-type="dfn" href="https://w3c.github.io/webappsec-credential-management/#concept-credential" id="ref-for-concept-credential①①">credential</a> as described in the <a data-link-type="dfn" href="#anonymization-ca" id="ref-for-anonymization-ca⑥">Anonymization CA</a> approach. For example, an <a data-link-type="dfn" href="#authenticator" id="ref-for-authenticator②⑤②">authenticator</a> can ship with a
-master <a data-link-type="dfn" href="#attestation-private-key" id="ref-for-attestation-private-key⑧">attestation private key</a> (and <a data-link-type="dfn" href="#attestation-certificate" id="ref-for-attestation-certificate②⓪">certificate</a>),
+main <a data-link-type="dfn" href="#attestation-private-key" id="ref-for-attestation-private-key⑧">attestation private key</a> (and <a data-link-type="dfn" href="#attestation-certificate" id="ref-for-attestation-certificate②⓪">certificate</a>),
 and combined with a cloud-operated <a data-link-type="dfn" href="#anonymization-ca" id="ref-for-anonymization-ca⑦">Anonymization CA</a>,
 can dynamically generate per-<a data-link-type="dfn" href="https://w3c.github.io/webappsec-credential-management/#concept-credential" id="ref-for-concept-credential①②">credential</a> <a data-link-type="dfn" href="#attestation-key-pair" id="ref-for-attestation-key-pair⑨">attestation key pairs</a> and <a data-link-type="dfn" href="#attestation-certificate" id="ref-for-attestation-certificate②①">attestation certificates</a>.</p>
      <p class="note" role="note"><span>Note:</span> In various places outside this specification, the term "Privacy CA" is used to refer to what is termed here

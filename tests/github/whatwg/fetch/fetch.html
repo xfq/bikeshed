@@ -1378,7 +1378,7 @@ message as HTTP/2 does not support them. </p>
    <p class="note" role="note">The <a data-link-type="dfn" href="#concept-body-source" id="ref-for-concept-body-source">source</a> and <a data-link-type="dfn" href="#concept-body-total-bytes" id="ref-for-concept-body-total-bytes">length</a> concepts of a network’s <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response①④">response</a>’s <a data-link-type="dfn" href="#concept-response-body" id="ref-for-concept-response-body">body</a> are always null. </p>
    <p>A <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response①⑤">response</a> has an associated <dfn class="dfn-paneled" data-dfn-for="response" data-dfn-type="dfn" data-export id="concept-response-cache-state">cache state</dfn> (the empty string or
 "<code>local</code>"). Unlesss stated otherwise, it is the empty string. </p>
-   <p class="note" role="note">This is intended solely for usage by service workers. <a data-link-type="biblio" href="#biblio-sw">[SW]</a> </p>
+   <p class="note" role="note">This is intended for usage by <cite>Service Workers</cite> and <cite>Resource Timing</cite>. <a data-link-type="biblio" href="#biblio-sw">[SW]</a> <a data-link-type="biblio" href="#biblio-resource-timing">[RESOURCE-TIMING]</a> </p>
    <p>A <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response①⑥">response</a> has an associated <dfn class="dfn-paneled" data-dfn-for="response" data-dfn-type="dfn" data-export id="concept-response-csp-list">CSP list</dfn>, which is a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list⑨">list</a> of <a data-link-type="dfn" href="https://w3c.github.io/webappsec-csp/#content-security-policy-object" id="ref-for-content-security-policy-object">Content Security Policy objects</a> for the <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response①⑦">response</a>. The list is empty unless
 otherwise specified. <a data-link-type="biblio" href="#biblio-csp">[CSP]</a> </p>
    <p>A <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response①⑧">response</a> has an associated <dfn class="dfn-paneled" data-dfn-for="response" data-dfn-type="dfn" data-export id="concept-response-cors-exposed-header-name-list">CORS-exposed header-name list</dfn> (a list of zero or more <a data-link-type="dfn" href="#concept-header" id="ref-for-concept-header③①">header</a> <a data-link-type="dfn" href="#concept-header-name" id="ref-for-concept-header-name③⑧">names</a>). The list is empty unless otherwise specified. </p>
@@ -2742,7 +2742,7 @@ representing the number of bytes transmitted. If given, <var>processRequestEndOf
 an algorithm accepting no arguments. If given, <var>processResponse</var> must be an algorithm
 accepting a <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response④①">response</a>. If given, <var>processResponseEndOfBody</var> must be an
 algorithm accepting a <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response④②">response</a> and null, failure, or a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence" id="ref-for-byte-sequence①①">byte sequence</a>. If
-given, <var>processResponseDone</var> must be an algorithm accepting no arguments. </p>
+given, <var>processResponseDone</var> must be an algorithm accepting a <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response④③">response</a>. </p>
    <p>An ongoing <a data-link-type="dfn" href="#concept-fetch" id="ref-for-concept-fetch②③">fetch</a> can be <dfn class="dfn-paneled" data-dfn-for="fetch" data-dfn-type="dfn" data-export id="concept-fetch-terminate">terminated</dfn> with flag <var>aborted</var>,
 which is unset unless otherwise specified. </p>
    <p>The user agent may be asked to <dfn class="dfn-paneled" data-dfn-for="fetch" data-dfn-type="dfn" data-export id="concept-fetch-suspend">suspend</dfn> the ongoing fetch.
@@ -2890,7 +2890,7 @@ steps: </p>
         <li>
          <p>If <var>noCorsResponse</var> is a <a data-link-type="dfn" href="#concept-filtered-response" id="ref-for-concept-filtered-response⑧">filtered response</a> or the <a data-link-type="dfn" href="#corb-check" id="ref-for-corb-check">CORB check</a> with <var>request</var> and <var>noCorsResponse</var> returns <b>allowed</b>, then return <var>noCorsResponse</var>. </p>
         <li>
-         <p>Return a new <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response④③">response</a> whose <a data-link-type="dfn" href="#concept-response-status" id="ref-for-concept-response-status⑥">status</a> is <var>noCorsResponse</var>’s <a data-link-type="dfn" href="#concept-response-status" id="ref-for-concept-response-status⑦">status</a>, and <a data-link-type="dfn" href="#concept-response-csp-list" id="ref-for-concept-response-csp-list">CSP list</a> is <var>noCorsResponse</var>’s <a data-link-type="dfn" href="#concept-response-csp-list" id="ref-for-concept-response-csp-list①">CSP list</a>. </p>
+         <p>Return a new <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response④④">response</a> whose <a data-link-type="dfn" href="#concept-response-status" id="ref-for-concept-response-status⑥">status</a> is <var>noCorsResponse</var>’s <a data-link-type="dfn" href="#concept-response-status" id="ref-for-concept-response-status⑦">status</a>, and <a data-link-type="dfn" href="#concept-response-csp-list" id="ref-for-concept-response-csp-list">CSP list</a> is <var>noCorsResponse</var>’s <a data-link-type="dfn" href="#concept-response-csp-list" id="ref-for-concept-response-csp-list①">CSP list</a>. </p>
          <p class="warning">This is only an effective defense against side channel attacks if <var>noCorsResponse</var> is kept isolated from the process that initiated the request. </p>
        </ol>
       <dt><var>request</var>’s <a data-link-type="dfn" href="#concept-request-current-url" id="ref-for-concept-request-current-url①④">current URL</a>’s <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-scheme" id="ref-for-concept-url-scheme①④">scheme</a> is not an <a data-link-type="dfn" href="#http-scheme" id="ref-for-http-scheme⑤">HTTP(S) scheme</a> 
@@ -2956,7 +2956,7 @@ steps: </p>
     <li>
      <p>If <var>internalResponse</var>’s <a data-link-type="dfn" href="#concept-response-url-list" id="ref-for-concept-response-url-list⑦">URL list</a> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-is-empty" id="ref-for-list-is-empty③">is empty</a>, then
   set it to a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-clone" id="ref-for-list-clone">clone</a> of <var>request</var>’s <a data-link-type="dfn" href="#concept-request-url-list" id="ref-for-concept-request-url-list③">URL list</a>. </p>
-     <p class="note" role="note">A <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response④④">response</a>’s <a data-link-type="dfn" href="#concept-response-url-list" id="ref-for-concept-response-url-list⑧">URL list</a> can be empty (for example,
+     <p class="note" role="note">A <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response④⑤">response</a>’s <a data-link-type="dfn" href="#concept-response-url-list" id="ref-for-concept-response-url-list⑧">URL list</a> can be empty (for example,
   when the response represents an <code>about</code> URL). </p>
     <li>
      <p>If <var>request</var>’s <a data-link-type="dfn" href="#timing-allow-failed" id="ref-for-timing-allow-failed②">timing allow failed flag</a> is unset, then set <var>internalResponse</var>’s <a data-link-type="dfn" href="#concept-response-timing-allow-passed" id="ref-for-concept-response-timing-allow-passed">timing allow passed flag</a>. </p>
@@ -3022,7 +3022,7 @@ steps: </p>
      <p>Otherwise, run <a data-link-type="dfn" href="#fetch-finale" id="ref-for-fetch-finale②">fetch finale</a> given <var>fetchParams</var> and <var>response</var>. </p>
    </ol>
    <hr>
-   <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="fetch-finale">fetch finale</dfn>, given a <a data-link-type="dfn" href="#fetch-params" id="ref-for-fetch-params②">fetch params</a> <var>fetchParams</var> and a <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response④⑤">response</a> <var>response</var>, run these steps: </p>
+   <p>The <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="fetch-finale">fetch finale</dfn>, given a <a data-link-type="dfn" href="#fetch-params" id="ref-for-fetch-params②">fetch params</a> <var>fetchParams</var> and a <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response④⑥">response</a> <var>response</var>, run these steps: </p>
    <ol>
     <li>
      <p>If <var>fetchParams</var>’s <a data-link-type="dfn" href="#fetch-params-process-response" id="ref-for-fetch-params-process-response①">process response</a> is non-null, then <a data-link-type="dfn" href="#queue-a-fetch-task" id="ref-for-queue-a-fetch-task⑤">queue a fetch task</a> to run <var>fetchParams</var>’s <a data-link-type="dfn" href="#fetch-params-process-response" id="ref-for-fetch-params-process-response②">process response</a> given <var>response</var>, with <var>fetchParams</var>’s <a data-link-type="dfn" href="#fetch-params-task-destination" id="ref-for-fetch-params-task-destination①">task destination</a>. </p>
@@ -3040,15 +3040,16 @@ steps: </p>
        <p>Otherwise, <a data-link-type="dfn" href="#body-fully-read" id="ref-for-body-fully-read①">fully read</a> <var>response</var>’s <a data-link-type="dfn" href="#concept-response-body" id="ref-for-concept-response-body①③">body</a> given <var>processBody</var>, <var>processBodyError</var>, and <var>fetchParams</var>’s <a data-link-type="dfn" href="#fetch-params-task-destination" id="ref-for-fetch-params-task-destination③">task destination</a>. </p>
      </ol>
    </ol>
-   <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="finalize-response">finalize response</dfn> given a <a data-link-type="dfn" href="#fetch-params" id="ref-for-fetch-params③">fetch params</a> <var>fetchParams</var> and a <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response④⑥">response</a> <var>response</var>, run these steps: </p>
+   <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="finalize-response">finalize response</dfn> given a <a data-link-type="dfn" href="#fetch-params" id="ref-for-fetch-params③">fetch params</a> <var>fetchParams</var> and a <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response④⑦">response</a> <var>response</var>, run these steps: </p>
    <ol>
     <li>
      <p>Set <var>fetchParams</var>’s <a data-link-type="dfn" href="#fetch-params-request" id="ref-for-fetch-params-request②">request</a>’s <a data-link-type="dfn" href="#done-flag" id="ref-for-done-flag②">done flag</a>. </p>
     <li>
      <p>If <var>fetchParams</var>’s <a data-link-type="dfn" href="#fetch-params-process-response-done" id="ref-for-fetch-params-process-response-done①">process response done</a> is not null,
- then <a data-link-type="dfn" href="#queue-a-fetch-task" id="ref-for-queue-a-fetch-task⑦">queue a fetch task</a> given <var>fetchParams</var>’s <a data-link-type="dfn" href="#fetch-params-process-response-done" id="ref-for-fetch-params-process-response-done②">process response done</a> and <var>fetchParams</var>’s <a data-link-type="dfn" href="#fetch-params-task-destination" id="ref-for-fetch-params-task-destination④">task destination</a>. </p>
+ then <a data-link-type="dfn" href="#queue-a-fetch-task" id="ref-for-queue-a-fetch-task⑦">queue a fetch task</a> to run <var>fetchParams</var>’s <a data-link-type="dfn" href="#fetch-params-process-response-done" id="ref-for-fetch-params-process-response-done②">process response done</a> given <var>response</var>,
+ with <var>fetchParams</var>’s <a data-link-type="dfn" href="#fetch-params-task-destination" id="ref-for-fetch-params-task-destination④">task destination</a>. </p>
    </ol>
-   <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="finalize-and-report-timing">finalize and report timing</dfn> given a <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response④⑦">response</a> <var>response</var>, a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#global-object" id="ref-for-global-object⑤">global object</a> <var>global</var>, and a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string" id="ref-for-string②">string</a> <var>initiatorType</var> (default "<code>other</code>"), run these steps: </p>
+   <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="finalize-and-report-timing">finalize and report timing</dfn> given a <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response④⑧">response</a> <var>response</var>, a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#global-object" id="ref-for-global-object⑤">global object</a> <var>global</var>, and a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#string" id="ref-for-string②">string</a> <var>initiatorType</var> (default "<code>other</code>"), run these steps: </p>
    <ol>
     <li>
      <p>If <var>response</var>’s <a data-link-type="dfn" href="#concept-response-url-list" id="ref-for-concept-response-url-list⑨">URL list</a> is null or <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-is-empty" id="ref-for-list-is-empty④">empty</a>, then return. </p>
@@ -3057,15 +3058,23 @@ steps: </p>
     <li>
      <p>Let <var>timingInfo</var> be <var>response</var>’s <a data-link-type="dfn" href="#concept-response-timing-info" id="ref-for-concept-response-timing-info①">timing info</a>. </p>
     <li>
+     <p>Let <var>cacheState</var> be <var>response</var>’s <a data-link-type="dfn" href="#concept-response-cache-state" id="ref-for-concept-response-cache-state">cache state</a>. </p>
+    <li>
      <p>If <var>timingInfo</var> is null, then return. </p>
     <li>
-     <p>If <var>response</var>’s <a data-link-type="dfn" href="#concept-response-timing-allow-passed" id="ref-for-concept-response-timing-allow-passed①">timing allow passed flag</a> is not set, then set <var>timingInfo</var> to a new <a data-link-type="dfn" href="#fetch-timing-info" id="ref-for-fetch-timing-info③">fetch timing info</a> whose <a data-link-type="dfn" href="#fetch-timing-info-start-time" id="ref-for-fetch-timing-info-start-time①">start time</a> and <a data-link-type="dfn" href="#fetch-timing-info-post-redirect-start-time" id="ref-for-fetch-timing-info-post-redirect-start-time①">post-redirect start time</a> are <var>timingInfo</var>’s <a data-link-type="dfn" href="#fetch-timing-info-start-time" id="ref-for-fetch-timing-info-start-time②">start time</a>. </p>
+     <p>If <var>response</var>’s <a data-link-type="dfn" href="#concept-response-timing-allow-passed" id="ref-for-concept-response-timing-allow-passed①">timing allow passed flag</a> is not set, then: </p>
+     <ol>
+      <li>
+       <p>Set <var>timingInfo</var> to a new <a data-link-type="dfn" href="#fetch-timing-info" id="ref-for-fetch-timing-info③">fetch timing info</a> whose <a data-link-type="dfn" href="#fetch-timing-info-start-time" id="ref-for-fetch-timing-info-start-time①">start time</a> and <a data-link-type="dfn" href="#fetch-timing-info-post-redirect-start-time" id="ref-for-fetch-timing-info-post-redirect-start-time①">post-redirect start time</a> are <var>timingInfo</var>’s <a data-link-type="dfn" href="#fetch-timing-info-start-time" id="ref-for-fetch-timing-info-start-time②">start time</a>. </p>
+      <li>
+       <p>Set <var>cacheState</var> to the empty string. </p>
+     </ol>
     <li>
      <p>Set <var>timingInfo</var>’s <a data-link-type="dfn" href="#fetch-timing-info-end-time" id="ref-for-fetch-timing-info-end-time">end time</a> to the <a data-link-type="dfn" href="https://www.w3.org/TR/hr-time-3/#dfn-coarsened-shared-current-time" id="ref-for-dfn-coarsened-shared-current-time①">coarsened shared current time</a> given <var>global</var>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object" id="ref-for-relevant-settings-object">relevant settings object</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-settings-object-cross-origin-isolated-capability" id="ref-for-concept-settings-object-cross-origin-isolated-capability①">cross-origin isolated capability</a>. </p>
     <li>
      <p>Set <var>response</var>’s <a data-link-type="dfn" href="#concept-response-timing-info" id="ref-for-concept-response-timing-info②">timing info</a> to <var>timingInfo</var>. </p>
     <li>
-     <p><a href="https://github.com/w3c/resource-timing/pull/261">Mark resource timing</a> for <var>timingInfo</var>, <var>originalURL</var>, <var>initiatorType</var>, and <var>global</var>. </p>
+     <p><a data-link-type="dfn">Mark resource timing</a> for <var>timingInfo</var>, <var>originalURL</var>, <var>initiatorType</var>, <var>global</var>, and <var>cacheState</var>. </p>
    </ol>
    <h3 class="heading settled" data-level="4.2" id="scheme-fetch"><span class="secno">4.2. </span><span class="content">Scheme fetch</span><span id="basic-fetch"></span><a class="self-link" href="#scheme-fetch"></a></h3>
    <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="concept-scheme-fetch">scheme fetch<span id="concept-basic-fetch"></span></dfn>, given a <a data-link-type="dfn" href="#fetch-params" id="ref-for-fetch-params④">fetch params</a> <var>fetchParams</var>: let <var>request</var> be <var>fetchParams</var>’s <a data-link-type="dfn" href="#fetch-params-request" id="ref-for-fetch-params-request③">request</a>, switch on <var>request</var>’s <a data-link-type="dfn" href="#concept-request-current-url" id="ref-for-concept-request-current-url①⑤">current URL</a>’s <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-scheme" id="ref-for-concept-url-scheme①⑤">scheme</a>, and run the associated steps: </p>
@@ -3073,7 +3082,7 @@ steps: </p>
     <dt>"<code>about</code>" 
     <dd>
      <p>If <var>request</var>’s <a data-link-type="dfn" href="#concept-request-current-url" id="ref-for-concept-request-current-url①⑥">current URL</a>’s <a data-link-type="dfn" href="https://url.spec.whatwg.org/#url-cannot-be-a-base-url-flag" id="ref-for-url-cannot-be-a-base-url-flag">cannot-be-a-base-URL</a> is true
-  and <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-path" id="ref-for-concept-url-path①">path</a> contains a single string "<code>blank</code>", then return a new <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response④⑧">response</a> whose <a data-link-type="dfn" href="#concept-response-status-message" id="ref-for-concept-response-status-message③">status message</a> is `<code>OK</code>`, <a data-link-type="dfn" href="#concept-response-header-list" id="ref-for-concept-response-header-list①⑥">header list</a> consist of a single <a data-link-type="dfn" href="#concept-header" id="ref-for-concept-header⑤⑤">header</a> whose <a data-link-type="dfn" href="#concept-header-name" id="ref-for-concept-header-name④⑤">name</a> is `<code>Content-Type</code>` and <a data-link-type="dfn" href="#concept-header-value" id="ref-for-concept-header-value③②">value</a> is
+  and <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-path" id="ref-for-concept-url-path①">path</a> contains a single string "<code>blank</code>", then return a new <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response④⑨">response</a> whose <a data-link-type="dfn" href="#concept-response-status-message" id="ref-for-concept-response-status-message③">status message</a> is `<code>OK</code>`, <a data-link-type="dfn" href="#concept-response-header-list" id="ref-for-concept-response-header-list①⑥">header list</a> consist of a single <a data-link-type="dfn" href="#concept-header" id="ref-for-concept-header⑤⑤">header</a> whose <a data-link-type="dfn" href="#concept-header-name" id="ref-for-concept-header-name④⑤">name</a> is `<code>Content-Type</code>` and <a data-link-type="dfn" href="#concept-header-value" id="ref-for-concept-header-value③②">value</a> is
   `<code>text/html;charset=utf-8</code>`, and <a data-link-type="dfn" href="#concept-response-body" id="ref-for-concept-response-body①④">body</a> is the empty byte sequence. </p>
      <p>Otherwise, return a <a data-link-type="dfn" href="#concept-network-error" id="ref-for-concept-network-error②①">network error</a>. </p>
      <p class="note no-backref" role="note"><a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url" id="ref-for-concept-url①④">URLs</a> such as "<code>about:config</code>" are handled
@@ -3091,7 +3100,7 @@ steps: </p>
          <p class="note" role="note">The `<code>GET</code>` <a data-link-type="dfn" href="#concept-method" id="ref-for-concept-method①⓪">method</a> restriction serves no useful purpose
       other than being interoperable. </p>
         <li>
-         <p>Let <var>response</var> be a new <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response④⑨">response</a> whose <a data-link-type="dfn" href="#concept-response-status-message" id="ref-for-concept-response-status-message④">status message</a> is `<code>OK</code>`. </p>
+         <p>Let <var>response</var> be a new <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response⑤⓪">response</a> whose <a data-link-type="dfn" href="#concept-response-status-message" id="ref-for-concept-response-status-message④">status message</a> is `<code>OK</code>`. </p>
         <li>
          <p><a data-link-type="dfn" href="#concept-header-list-append" id="ref-for-concept-header-list-append⑤">Append</a> `<code>Content-Length</code>`/<var>blob</var>’s <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/FileAPI/#dfn-size" id="ref-for-dfn-size">size</a></code> attribute value to <var>response</var>’s <a data-link-type="dfn" href="#concept-response-header-list" id="ref-for-concept-response-header-list①⑦">header list</a>. </p>
         <li>
@@ -3121,7 +3130,7 @@ steps: </p>
       <li>
        <p>If <var>dataURLStruct</var> is failure, then return a <a data-link-type="dfn" href="#concept-network-error" id="ref-for-concept-network-error②⑤">network error</a>. </p>
       <li>
-       <p>Return a <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response⑤⓪">response</a> whose <a data-link-type="dfn" href="#concept-response-status-message" id="ref-for-concept-response-status-message⑤">status message</a> is
+       <p>Return a <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response⑤①">response</a> whose <a data-link-type="dfn" href="#concept-response-status-message" id="ref-for-concept-response-status-message⑤">status message</a> is
    `<code>OK</code>`, <a data-link-type="dfn" href="#concept-response-header-list" id="ref-for-concept-response-header-list①⑨">header list</a> consist of a single <a data-link-type="dfn" href="#concept-header" id="ref-for-concept-header⑤⑥">header</a> whose <a data-link-type="dfn" href="#concept-header-name" id="ref-for-concept-header-name④⑥">name</a> is `<code>Content-Type</code>` and <a data-link-type="dfn" href="#concept-header-value" id="ref-for-concept-header-value③③">value</a> is <var>dataURLStruct</var>’s <a data-link-type="dfn" href="#data-url-struct-mime-type" id="ref-for-data-url-struct-mime-type">MIME type</a>, <a data-link-type="dfn" href="https://mimesniff.spec.whatwg.org/#serialize-a-mime-type-to-bytes" id="ref-for-serialize-a-mime-type-to-bytes">serialized</a>, and <a data-link-type="dfn" href="#concept-response-body" id="ref-for-concept-response-body①⑥">body</a> is <var>dataURLStruct</var>’s <a data-link-type="dfn" href="#data-url-struct-body" id="ref-for-data-url-struct-body">body</a>. </p>
      </ol>
     <dt>"<code>file</code>" 
@@ -3232,7 +3241,7 @@ these steps: </p>
        <p>Set <var>response</var> and <var>actualResponse</var> to the result of running <a data-link-type="dfn" href="#concept-http-network-or-cache-fetch" id="ref-for-concept-http-network-or-cache-fetch">HTTP-network-or-cache fetch</a> given <var>fetchParams</var>. </p>
       <li>
        <p>If <var>request</var>’s <a data-link-type="dfn" href="#concept-request-response-tainting" id="ref-for-concept-request-response-tainting①②">response tainting</a> is "<code>cors</code>" and a <a data-link-type="dfn" href="#concept-cors-check" id="ref-for-concept-cors-check">CORS check</a> for <var>request</var> and <var>response</var> returns failure, then return a <a data-link-type="dfn" href="#concept-network-error" id="ref-for-concept-network-error③⓪">network error</a>. </p>
-       <p class="note no-backref" role="note">As the <a data-link-type="dfn" href="#concept-cors-check" id="ref-for-concept-cors-check①">CORS check</a> is not to be applied to <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response⑤①">responses</a> whose <a data-link-type="dfn" href="#concept-response-status" id="ref-for-concept-response-status①⓪">status</a> is 304 or 407, or <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response⑤②">responses</a> from a service worker for that matter, it is applied here. </p>
+       <p class="note no-backref" role="note">As the <a data-link-type="dfn" href="#concept-cors-check" id="ref-for-concept-cors-check①">CORS check</a> is not to be applied to <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response⑤②">responses</a> whose <a data-link-type="dfn" href="#concept-response-status" id="ref-for-concept-response-status①⓪">status</a> is 304 or 407, or <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response⑤③">responses</a> from a service worker for that matter, it is applied here. </p>
       <li>
        <p>If the <a data-link-type="dfn" href="#concept-tao-check" id="ref-for-concept-tao-check">TAO check</a> for <var>request</var> and <var>response</var> returns failure,
    then set <var>request</var>’s <a data-link-type="dfn" href="#timing-allow-failed" id="ref-for-timing-allow-failed③">timing allow failed flag</a>. </p>
@@ -3275,7 +3284,7 @@ these steps: </p>
      <p>Return <var>response</var>. <span class="note no-backref">Typically <var>actualResponse</var>’s <a data-link-type="dfn" href="#concept-response-body" id="ref-for-concept-response-body①⑦">body</a>’s <a data-link-type="dfn" href="#concept-body-stream" id="ref-for-concept-body-stream⑦">stream</a> is still being enqueued to after returning.</span> </p>
    </ol>
    <h3 class="heading settled" data-level="4.4" id="http-redirect-fetch"><span class="secno">4.4. </span><span class="content">HTTP-redirect fetch</span><a class="self-link" href="#http-redirect-fetch"></a></h3>
-   <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="concept-http-redirect-fetch">HTTP-redirect fetch</dfn>, given a <a data-link-type="dfn" href="#fetch-params" id="ref-for-fetch-params⑥">fetch params</a> <var>fetchParams</var> and a <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response⑤③">response</a> <var>response</var>,
+   <p>To <dfn class="dfn-paneled" data-dfn-type="dfn" data-export id="concept-http-redirect-fetch">HTTP-redirect fetch</dfn>, given a <a data-link-type="dfn" href="#fetch-params" id="ref-for-fetch-params⑥">fetch params</a> <var>fetchParams</var> and a <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response⑤④">response</a> <var>response</var>,
 run these steps: </p>
    <ol>
     <li>
@@ -3341,8 +3350,8 @@ run these steps: </p>
    <h3 class="heading settled" data-level="4.5" id="navigate-redirect-fetch"><span class="secno">4.5. </span><span class="content">Navigate-redirect fetch</span><a class="self-link" href="#navigate-redirect-fetch"></a></h3>
    <p class="note" role="note">This algorithm is used by <cite>HTML</cite>’s navigate algorithm. It is expected to be
 invoked while <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel①">in parallel</a>. <a data-link-type="biblio" href="#biblio-html">[HTML]</a> </p>
-   <p>To <dfn data-dfn-type="dfn" data-export id="concept-navigate-redirect-fetch">navigate-redirect fetch<a class="self-link" href="#concept-navigate-redirect-fetch"></a></dfn>, given a <a data-link-type="dfn" href="#concept-request" id="ref-for-concept-request⑨⑤">request</a> <var>request</var> and <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response⑤④">response</a> <var>response</var>, run these
-steps. They return a <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response⑤⑤">response</a>. </p>
+   <p>To <dfn data-dfn-type="dfn" data-export id="concept-navigate-redirect-fetch">navigate-redirect fetch<a class="self-link" href="#concept-navigate-redirect-fetch"></a></dfn>, given a <a data-link-type="dfn" href="#concept-request" id="ref-for-concept-request⑨⑤">request</a> <var>request</var> and <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response⑤⑤">response</a> <var>response</var>, run these
+steps. They return a <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response⑤⑥">response</a>. </p>
    <ol>
     <li>
      <p>Assert: <var>request</var>’s <a data-link-type="dfn" href="#concept-request-redirect-mode" id="ref-for-concept-request-redirect-mode⑥">redirect mode</a> is "<code>manual</code>". </p>
@@ -3460,7 +3469,7 @@ steps. They return a <a data-link-type="dfn" href="#concept-response" id="ref-fo
        <p>If <var>httpRequest</var>’s <a data-link-type="dfn" href="#concept-request-header-list" id="ref-for-concept-request-header-list②④">header list</a> <a data-link-type="dfn" href="#header-list-contains" id="ref-for-header-list-contains①⑥">contains</a> `<code>Range</code>`, then <a data-link-type="dfn" href="#concept-header-list-append" id="ref-for-concept-header-list-append①③">append</a> `<code>Accept-Encoding</code>`/`<code>identity</code>` to <var>httpRequest</var>’s <a data-link-type="dfn" href="#concept-request-header-list" id="ref-for-concept-request-header-list②⑤">header list</a>. </p>
        <div class="note no-backref" role="note">
         <p>This avoids a failure when <a data-link-type="dfn" href="#handle-content-codings" id="ref-for-handle-content-codings">handling content codings</a> with
-     a part of an encoded <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response⑤⑥">response</a>. </p>
+     a part of an encoded <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response⑤⑦">response</a>. </p>
         <p>Additionally, <a href="https://jakearchibald.github.io/accept-encoding-range-test/">many servers</a> mistakenly ignore `<code>Range</code>` headers if a non-identity encoding is accepted. </p>
        </div>
       <li>
@@ -3531,7 +3540,7 @@ steps. They return a <a data-link-type="dfn" href="#concept-response" id="ref-fo
             <li>
              <p>Set <var>response</var> to <var>storedResponse</var>. </p>
             <li>
-             <p>Set <var>response</var>’s <a data-link-type="dfn" href="#concept-response-cache-state" id="ref-for-concept-response-cache-state">cache state</a> to "<code>local</code>". </p>
+             <p>Set <var>response</var>’s <a data-link-type="dfn" href="#concept-response-cache-state" id="ref-for-concept-response-cache-state①">cache state</a> to "<code>local</code>". </p>
             <li>
              <p>Let <var>revalidateRequest</var> be a <a data-link-type="dfn" href="#concept-request-clone" id="ref-for-concept-request-clone②">clone</a> of <var>request</var>. </p>
             <li>
@@ -3566,7 +3575,7 @@ steps. They return a <a data-link-type="dfn" href="#concept-response" id="ref-fo
           "<a href="https://tools.ietf.org/html/rfc7234#section-4.3.4">Sending a Validation Request</a>"
           chapter of <cite>HTTP Caching</cite> <a data-link-type="biblio" href="#biblio-http-caching">[HTTP-CACHING]</a>. </p>
             <li>
-             <p>Otherwise, set <var>response</var> to <var>storedResponse</var> and set <var>response</var>’s <a data-link-type="dfn" href="#concept-response-cache-state" id="ref-for-concept-response-cache-state①">cache state</a> to "<code>local</code>". </p>
+             <p>Otherwise, set <var>response</var> to <var>storedResponse</var> and set <var>response</var>’s <a data-link-type="dfn" href="#concept-response-cache-state" id="ref-for-concept-response-cache-state②">cache state</a> to "<code>local</code>". </p>
            </ol>
          </ol>
        </ol>
@@ -3763,32 +3772,43 @@ optional boolean <var>forceNewConnection</var> (default false), run these steps:
         <li>
          <p>Follow the relevant requirements from HTTP. <a data-link-type="biblio" href="#biblio-http">[HTTP]</a> <a data-link-type="biblio" href="#biblio-http-semantics">[HTTP-SEMANTICS]</a> <a data-link-type="biblio" href="#biblio-http-cond">[HTTP-COND]</a> <a data-link-type="biblio" href="#biblio-http-caching">[HTTP-CACHING]</a> <a data-link-type="biblio" href="#biblio-http-auth">[HTTP-AUTH]</a> </p>
         <li>
+         <p>If <var>request</var>’s <a data-link-type="dfn" href="#concept-request-body" id="ref-for-concept-request-body③③">body</a> is non-null, and <var>request</var>’s <a data-link-type="dfn" href="#concept-request-body" id="ref-for-concept-request-body③④">body</a>’s <a data-link-type="dfn" href="#concept-body-source" id="ref-for-concept-body-source①⓪">source</a> is null, then the user agent may have a
+      buffer of up to 64 kibibytes and store a part of <var>request</var>’s <a data-link-type="dfn" href="#concept-request-body" id="ref-for-concept-request-body③⑤">body</a> in that buffer. If the user agent reads from <var>request</var>’s <a data-link-type="dfn" href="#concept-request-body" id="ref-for-concept-request-body③⑥">body</a> beyond that buffer’s size and the user agent needs to resend <var>request</var>, then instead
+      return a <a data-link-type="dfn" href="#concept-network-error" id="ref-for-concept-network-error④⑨">network error</a>. </p>
+         <div class="note" role="note">
+          <p>The resending is needed when the connection is timed out, for example. </p>
+          <p>The buffer is not needed when <var>request</var>’s <a data-link-type="dfn" href="#concept-request-body" id="ref-for-concept-request-body③⑦">body</a>’s <a data-link-type="dfn" href="#concept-body-source" id="ref-for-concept-body-source①①">source</a> is non-null, because <var>request</var>’s <a data-link-type="dfn" href="#concept-request-body" id="ref-for-concept-request-body③⑧">body</a> can
+       be recreated from it. </p>
+          <p>When <var>request</var>’s <a data-link-type="dfn" href="#concept-request-body" id="ref-for-concept-request-body③⑨">body</a>’s <a data-link-type="dfn" href="#concept-body-source" id="ref-for-concept-body-source①②">source</a> is null, it
+       means <a data-link-type="dfn" href="#concept-request-body" id="ref-for-concept-request-body④⓪">body</a> is created from a <code class="idl"><a data-link-type="idl" href="https://streams.spec.whatwg.org/#readablestream" id="ref-for-readablestream②">ReadableStream</a></code> object, which means <a data-link-type="dfn" href="#concept-request-body" id="ref-for-concept-request-body④①">body</a> cannot be recreated and that is why the buffer is needed. </p>
+         </div>
+        <li>
          <p>Set <var>timingInfo</var>’s <a data-link-type="dfn" href="#fetch-timing-info-final-network-response-start-time" id="ref-for-fetch-timing-info-final-network-response-start-time">final network-response start time</a> to the <a data-link-type="dfn" href="https://www.w3.org/TR/hr-time-3/#dfn-coarsened-shared-current-time" id="ref-for-dfn-coarsened-shared-current-time⑤">coarsened shared current time</a> given <var>fetchParams</var>’s <a data-link-type="dfn" href="#fetch-params-cross-origin-isolated-capability" id="ref-for-fetch-params-cross-origin-isolated-capability⑤">cross-origin isolated capability</a>, immediately after the user agent’s
      HTTP parser receives the first byte of the response (e.g., frame header bytes for HTTP/2 or
      response status line for HTTP/1.x). </p>
         <li>
          <p>Wait until all the <a data-link-type="dfn" href="#concept-header" id="ref-for-concept-header⑥①">headers</a> are transmitted. </p>
         <li>
-         <p>Any <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response⑤⑦">responses</a> whose <a data-link-type="dfn" href="#concept-response-status" id="ref-for-concept-response-status②①">status</a> is in the range 100 to 199,
+         <p>Any <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response⑤⑧">responses</a> whose <a data-link-type="dfn" href="#concept-response-status" id="ref-for-concept-response-status②①">status</a> is in the range 100 to 199,
       inclusive, and is not 101, are to be ignored, except for the purposes of setting <var>timingInfo</var>’s <a data-link-type="dfn" href="#fetch-timing-info-final-network-response-start-time" id="ref-for-fetch-timing-info-final-network-response-start-time①">final network-response start time</a> above. </p>
-         <p class="note no-backref" role="note">These kind of <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response⑤⑧">responses</a> are eventually followed by a
-      "final" <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response⑤⑨">response</a>. </p>
+         <p class="note no-backref" role="note">These kind of <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response⑤⑨">responses</a> are eventually followed by a
+      "final" <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response⑥⓪">response</a>. </p>
        </ul>
        <p class="note" role="note">The exact layering between Fetch and HTTP still needs to be sorted through and
-    therefore <var>response</var> represents both a <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response⑥⓪">response</a> and
+    therefore <var>response</var> represents both a <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response⑥①">response</a> and
     an HTTP response here. </p>
        <p>If <var>request</var>’s <a data-link-type="dfn" href="#concept-request-header-list" id="ref-for-concept-request-header-list③⑤">header list</a> contains
     `<code>Transfer-Encoding</code>`/`<code>chunked</code>` and <var>response</var> is transferred
-    via HTTP/1.0 or older, then return a <a data-link-type="dfn" href="#concept-network-error" id="ref-for-concept-network-error④⑨">network error</a>. </p>
+    via HTTP/1.0 or older, then return a <a data-link-type="dfn" href="#concept-network-error" id="ref-for-concept-network-error⑤⓪">network error</a>. </p>
        <p>If the HTTP request results in a TLS client certificate dialog, then: </p>
        <ol>
         <li>
          <p>If <var>request</var>’s <a data-link-type="dfn" href="#concept-request-window" id="ref-for-concept-request-window⑧">window</a> is an <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#environment-settings-object" id="ref-for-environment-settings-object①③">environment settings object</a>, make the dialog
      available in <var>request</var>’s <a data-link-type="dfn" href="#concept-request-window" id="ref-for-concept-request-window⑨">window</a>. </p>
         <li>
-         <p>Otherwise, return a <a data-link-type="dfn" href="#concept-network-error" id="ref-for-concept-network-error⑤⓪">network error</a>. </p>
+         <p>Otherwise, return a <a data-link-type="dfn" href="#concept-network-error" id="ref-for-concept-network-error⑤①">network error</a>. </p>
        </ol>
-       <p>To transmit <var>request</var>’s <a data-link-type="dfn" href="#concept-request-body" id="ref-for-concept-request-body③③">body</a> <var>body</var>, run these steps: </p>
+       <p>To transmit <var>request</var>’s <a data-link-type="dfn" href="#concept-request-body" id="ref-for-concept-request-body④②">body</a> <var>body</var>, run these steps: </p>
        <ol>
         <li>
          <p>If <var>body</var> is null and <var>fetchParams</var>’s <a data-link-type="dfn" href="#fetch-params-process-request-end-of-body" id="ref-for-fetch-params-process-request-end-of-body①">process request end-of-body</a> is non-null, then <a data-link-type="dfn" href="#queue-a-fetch-task" id="ref-for-queue-a-fetch-task⑧">queue a fetch task</a> given <var>fetchParams</var>’s <a data-link-type="dfn" href="#fetch-params-process-request-end-of-body" id="ref-for-fetch-params-process-request-end-of-body②">process request end-of-body</a> and <var>fetchParams</var>’s <a data-link-type="dfn" href="#fetch-params-task-destination" id="ref-for-fetch-params-task-destination⑤">task destination</a>. </p>
@@ -3827,7 +3847,7 @@ optional boolean <var>forceNewConnection</var> (default false), run these steps:
              <p>Otherwise, <a data-link-type="dfn" href="#concept-fetch-terminate" id="ref-for-concept-fetch-terminate①④">terminate</a> the ongoing fetch. </p>
            </ol>
           <li>
-           <p><a data-link-type="dfn" href="#body-incrementally-read" id="ref-for-body-incrementally-read">Incrementally read</a> <var>request</var>’s <a data-link-type="dfn" href="#concept-request-body" id="ref-for-concept-request-body③④">body</a> given <var>processBodyChunk</var>, <var>processEndOfBody</var>, <var>processBodyError</var>, and <var>fetchParams</var>’s <a data-link-type="dfn" href="#fetch-params-task-destination" id="ref-for-fetch-params-task-destination⑥">task destination</a>. </p>
+           <p><a data-link-type="dfn" href="#body-incrementally-read" id="ref-for-body-incrementally-read">Incrementally read</a> <var>request</var>’s <a data-link-type="dfn" href="#concept-request-body" id="ref-for-concept-request-body④③">body</a> given <var>processBodyChunk</var>, <var>processEndOfBody</var>, <var>processBodyError</var>, and <var>fetchParams</var>’s <a data-link-type="dfn" href="#fetch-params-task-destination" id="ref-for-fetch-params-task-destination⑥">task destination</a>. </p>
          </ol>
        </ol>
      </ol>
@@ -3841,7 +3861,7 @@ optional boolean <var>forceNewConnection</var> (default false), run these steps:
       <li>
        <p>If <var>aborted</var> is set, then return an <a data-link-type="dfn" href="#concept-aborted-network-error" id="ref-for-concept-aborted-network-error⑤">aborted network error</a>. </p>
       <li>
-       <p>Return a <a data-link-type="dfn" href="#concept-network-error" id="ref-for-concept-network-error⑤①">network error</a>. </p>
+       <p>Return a <a data-link-type="dfn" href="#concept-network-error" id="ref-for-concept-network-error⑤②">network error</a>. </p>
      </ol>
     <li>
      <p>Let <var>pullAlgorithm</var> be an action that <a data-link-type="dfn" href="#concept-fetch-resume" id="ref-for-concept-fetch-resume">resumes</a> the
@@ -3854,7 +3874,7 @@ optional boolean <var>forceNewConnection</var> (default false), run these steps:
      <p>Let <var>sizeAlgorithm</var> be an algorithm that accepts a <a data-link-type="dfn" href="https://streams.spec.whatwg.org/#chunk" id="ref-for-chunk">chunk</a> object and returns
  a non-negative, non-NaN, non-infinite number, chosen by the user agent. </p>
     <li>
-     <p>Let <var>stream</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new">new</a> <code class="idl"><a data-link-type="idl" href="https://streams.spec.whatwg.org/#readablestream" id="ref-for-readablestream②">ReadableStream</a></code>. </p>
+     <p>Let <var>stream</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new">new</a> <code class="idl"><a data-link-type="idl" href="https://streams.spec.whatwg.org/#readablestream" id="ref-for-readablestream③">ReadableStream</a></code>. </p>
     <li>
      <p><a data-link-type="dfn" href="https://streams.spec.whatwg.org/#readablestream-set-up" id="ref-for-readablestream-set-up">Set up</a> <var>stream</var> with <a data-link-type="dfn" href="https://streams.spec.whatwg.org/#readablestream-set-up-pullalgorithm" id="ref-for-readablestream-set-up-pullalgorithm"><var>pullAlgorithm</var></a> set to <var>pullAlgorithm</var>, <a data-link-type="dfn" href="https://streams.spec.whatwg.org/#readablestream-set-up-cancelalgorithm" id="ref-for-readablestream-set-up-cancelalgorithm"><var>cancelAlgorithm</var></a> set to <var>cancelAlgorithm</var>, <a data-link-type="dfn" href="https://streams.spec.whatwg.org/#readablestream-set-up-highwatermark" id="ref-for-readablestream-set-up-highwatermark"><var>highWaterMark</var></a> set to <var>highWaterMark</var>, and <a data-link-type="dfn" href="https://streams.spec.whatwg.org/#readablestream-set-up-sizealgorithm" id="ref-for-readablestream-set-up-sizealgorithm"><var>sizeAlgorithm</var></a> set to <var>sizeAlgorithm</var>. </p>
     <li>
@@ -3863,7 +3883,7 @@ optional boolean <var>forceNewConnection</var> (default false), run these steps:
       <li>
        <p>Set <var>response</var>’s <a data-link-type="dfn" href="#concept-response-body" id="ref-for-concept-response-body①⑨">body</a> to a new <a data-link-type="dfn" href="#concept-body" id="ref-for-concept-body①①">body</a> whose <a data-link-type="dfn" href="#concept-body-stream" id="ref-for-concept-body-stream①⓪">stream</a> is <var>stream</var>. </p>
       <li>
-       <p>If <var>response</var> is not a <a data-link-type="dfn" href="#concept-network-error" id="ref-for-concept-network-error⑤②">network error</a> and <var>request</var>’s <a data-link-type="dfn" href="#concept-request-cache-mode" id="ref-for-concept-request-cache-mode①②">cache mode</a> is not "<code>no-store</code>", then update <var>response</var> in <var>httpCache</var> for <var>request</var>. </p>
+       <p>If <var>response</var> is not a <a data-link-type="dfn" href="#concept-network-error" id="ref-for-concept-network-error⑤③">network error</a> and <var>request</var>’s <a data-link-type="dfn" href="#concept-request-cache-mode" id="ref-for-concept-request-cache-mode①②">cache mode</a> is not "<code>no-store</code>", then update <var>response</var> in <var>httpCache</var> for <var>request</var>. </p>
       <li>
        <p>If <var>includeCredentials</var> is true and the user agent is not configured to block
     cookies for <var>request</var> (see <a href="https://tools.ietf.org/html/rfc6265#section-7">section 7</a> of <a data-link-type="biblio" href="#biblio-cookies">[COOKIES]</a>), then run
@@ -3996,19 +4016,19 @@ number of these <a data-link-type="dfn" href="#cors-preflight-fetch-0" id="ref-f
    `<a data-link-type="http-header" href="#http-access-control-allow-headers" id="ref-for-http-access-control-allow-headers②"><code>Access-Control-Allow-Headers</code></a>` and <var>response</var>’s <a data-link-type="dfn" href="#concept-response-header-list" id="ref-for-concept-response-header-list②⑦">header list</a>. </p>
       <li>
        <p>If either <var>methods</var> or <var>headerNames</var> is failure,
-   return a <a data-link-type="dfn" href="#concept-network-error" id="ref-for-concept-network-error⑤③">network error</a>. </p>
+   return a <a data-link-type="dfn" href="#concept-network-error" id="ref-for-concept-network-error⑤④">network error</a>. </p>
       <li>
        <p>If <var>methods</var> is null and <var>request</var>’s <a data-link-type="dfn" href="#use-cors-preflight-flag" id="ref-for-use-cors-preflight-flag④">use-CORS-preflight flag</a> is set, then set <var>methods</var> to a new list containing <var>request</var>’s <a data-link-type="dfn" href="#concept-request-method" id="ref-for-concept-request-method①⑥">method</a>. </p>
        <p class="note no-backref" role="note">This ensures that a <a data-link-type="dfn" href="#cors-preflight-fetch-0" id="ref-for-cors-preflight-fetch-0⑥">CORS-preflight fetch</a> that
     happened due to <var>request</var>’s <a data-link-type="dfn" href="#use-cors-preflight-flag" id="ref-for-use-cors-preflight-flag⑤">use-CORS-preflight flag</a> being set is <a data-link-type="dfn" href="#concept-cache" id="ref-for-concept-cache②">cached</a>. </p>
       <li>
-       <p>If <var>request</var>’s <a data-link-type="dfn" href="#concept-request-method" id="ref-for-concept-request-method①⑦">method</a> is not in <var>methods</var>, <var>request</var>’s <a data-link-type="dfn" href="#concept-request-method" id="ref-for-concept-request-method①⑧">method</a> is not a <a data-link-type="dfn" href="#cors-safelisted-method" id="ref-for-cors-safelisted-method③">CORS-safelisted method</a>, and <var>request</var>’s <a data-link-type="dfn" href="#concept-request-credentials-mode" id="ref-for-concept-request-credentials-mode①③">credentials mode</a> is "<code>include</code>" or <var>methods</var> does not contain `<code>*</code>`, then return a <a data-link-type="dfn" href="#concept-network-error" id="ref-for-concept-network-error⑤④">network error</a>. </p>
+       <p>If <var>request</var>’s <a data-link-type="dfn" href="#concept-request-method" id="ref-for-concept-request-method①⑦">method</a> is not in <var>methods</var>, <var>request</var>’s <a data-link-type="dfn" href="#concept-request-method" id="ref-for-concept-request-method①⑧">method</a> is not a <a data-link-type="dfn" href="#cors-safelisted-method" id="ref-for-cors-safelisted-method③">CORS-safelisted method</a>, and <var>request</var>’s <a data-link-type="dfn" href="#concept-request-credentials-mode" id="ref-for-concept-request-credentials-mode①③">credentials mode</a> is "<code>include</code>" or <var>methods</var> does not contain `<code>*</code>`, then return a <a data-link-type="dfn" href="#concept-network-error" id="ref-for-concept-network-error⑤⑤">network error</a>. </p>
       <li>
        <p>If one of <var>request</var>’s <a data-link-type="dfn" href="#concept-request-header-list" id="ref-for-concept-request-header-list④⓪">header list</a>’s <a data-link-type="dfn" href="#concept-header-name" id="ref-for-concept-header-name④⑨">names</a> is a <a data-link-type="dfn" href="#cors-non-wildcard-request-header-name" id="ref-for-cors-non-wildcard-request-header-name">CORS non-wildcard request-header name</a> and is not a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-case-insensitive" id="ref-for-byte-case-insensitive①⑤">byte-case-insensitive</a> match for an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-item" id="ref-for-list-item①">item</a> in <var>headerNames</var>, then
-   return a <a data-link-type="dfn" href="#concept-network-error" id="ref-for-concept-network-error⑤⑤">network error</a>. </p>
+   return a <a data-link-type="dfn" href="#concept-network-error" id="ref-for-concept-network-error⑤⑥">network error</a>. </p>
       <li>
        <p><a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-iterate" id="ref-for-list-iterate⑧">For each</a> <var>unsafeName</var> in the <a data-link-type="dfn" href="#cors-unsafe-request-header-names" id="ref-for-cors-unsafe-request-header-names③">CORS-unsafe request-header names</a> with <var>request</var>’s <a data-link-type="dfn" href="#concept-request-header-list" id="ref-for-concept-request-header-list④①">header list</a>, if <var>unsafeName</var> is not a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-case-insensitive" id="ref-for-byte-case-insensitive①⑥">byte-case-insensitive</a> match for an <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list-item" id="ref-for-list-item②">item</a> in <var>headerNames</var> and <var>request</var>’s <a data-link-type="dfn" href="#concept-request-credentials-mode" id="ref-for-concept-request-credentials-mode①④">credentials mode</a> is "<code>include</code>" or <var>headerNames</var> does not
-   contain `<code>*</code>`, return a <a data-link-type="dfn" href="#concept-network-error" id="ref-for-concept-network-error⑤⑥">network error</a>. </p>
+   contain `<code>*</code>`, return a <a data-link-type="dfn" href="#concept-network-error" id="ref-for-concept-network-error⑤⑦">network error</a>. </p>
       <li>
        <p>Let <var>max-age</var> be the result of <a data-link-type="dfn" href="#extract-header-list-values" id="ref-for-extract-header-list-values⑤">extracting header list values</a> given
    `<a data-link-type="http-header" href="#http-access-control-max-age" id="ref-for-http-access-control-max-age"><code>Access-Control-Max-Age</code></a>` and <var>response</var>’s <a data-link-type="dfn" href="#concept-response-header-list" id="ref-for-concept-response-header-list②⑧">header list</a>. </p>
@@ -4031,7 +4051,7 @@ number of these <a data-link-type="dfn" href="#cors-preflight-fetch-0" id="ref-f
        <p>Return <var>response</var>. </p>
      </ol>
     <li>
-     <p>Otherwise, return a <a data-link-type="dfn" href="#concept-network-error" id="ref-for-concept-network-error⑤⑦">network error</a>. </p>
+     <p>Otherwise, return a <a data-link-type="dfn" href="#concept-network-error" id="ref-for-concept-network-error⑤⑧">network error</a>. </p>
    </ol>
    <h3 class="heading settled" data-level="4.9" id="cors-preflight-cache"><span class="secno">4.9. </span><span class="content">CORS-preflight cache</span><a class="self-link" href="#cors-preflight-cache"></a></h3>
    <p>A user agent has an associated <a data-link-type="dfn" href="#concept-cache" id="ref-for-concept-cache④">CORS-preflight cache</a>. A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="concept-cache">CORS-preflight cache</dfn> is a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list①⓪">list</a> of <a data-link-type="dfn" href="#cache-entry" id="ref-for-cache-entry">cache entries</a>. </p>
@@ -4487,12 +4507,12 @@ of a <a data-link-type="dfn" href="#concept-request" id="ref-for-concept-request
    <h3 class="heading settled" data-level="5.2" id="bodyinit-unions"><span class="secno">5.2. </span><span class="content">BodyInit unions</span><a class="self-link" href="#bodyinit-unions"></a></h3>
 <pre class="idl highlight def"><c- b>typedef</c-> (<a data-link-type="idl-name" href="https://w3c.github.io/FileAPI/#dfn-Blob" id="ref-for-dfn-Blob③"><c- n>Blob</c-></a> <c- b>or</c-> <a data-link-type="idl-name" href="https://heycam.github.io/webidl/#BufferSource" id="ref-for-BufferSource"><c- n>BufferSource</c-></a> <c- b>or</c-> <a data-link-type="idl-name" href="https://xhr.spec.whatwg.org/#formdata" id="ref-for-formdata①"><c- n>FormData</c-></a> <c- b>or</c-> <a data-link-type="idl-name" href="https://url.spec.whatwg.org/#urlsearchparams" id="ref-for-urlsearchparams"><c- n>URLSearchParams</c-></a> <c- b>or</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-USVString" id="ref-for-idl-USVString"><c- b>USVString</c-></a>) <dfn class="dfn-paneled idl-code" data-dfn-type="typedef" data-export id="typedefdef-xmlhttprequestbodyinit"><code><c- g>XMLHttpRequestBodyInit</c-></code></dfn>;
 
-<c- b>typedef</c-> (<a data-link-type="idl-name" href="https://streams.spec.whatwg.org/#readablestream" id="ref-for-readablestream③"><c- n>ReadableStream</c-></a> <c- b>or</c-> <a data-link-type="idl-name" href="#typedefdef-xmlhttprequestbodyinit" id="ref-for-typedefdef-xmlhttprequestbodyinit"><c- n>XMLHttpRequestBodyInit</c-></a>) <dfn class="dfn-paneled idl-code" data-dfn-type="typedef" data-export id="bodyinit"><code><c- g>BodyInit</c-></code></dfn>;</pre>
+<c- b>typedef</c-> (<a data-link-type="idl-name" href="https://streams.spec.whatwg.org/#readablestream" id="ref-for-readablestream④"><c- n>ReadableStream</c-></a> <c- b>or</c-> <a data-link-type="idl-name" href="#typedefdef-xmlhttprequestbodyinit" id="ref-for-typedefdef-xmlhttprequestbodyinit"><c- n>XMLHttpRequestBodyInit</c-></a>) <dfn class="dfn-paneled idl-code" data-dfn-type="typedef" data-export id="bodyinit"><code><c- g>BodyInit</c-></code></dfn>;</pre>
    <p>To <dfn class="dfn-paneled" data-dfn-for="BodyInit" data-dfn-type="dfn" data-export id="bodyinit-safely-extract">safely extract</dfn> a <a data-link-type="dfn" href="#concept-body" id="ref-for-concept-body①②">body</a> and a
 `<code>Content-Type</code>` <a data-link-type="dfn" href="#concept-header-value" id="ref-for-concept-header-value③⑧">value</a> from a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence" id="ref-for-byte-sequence①④">byte sequence</a> or <code class="idl"><a data-link-type="idl" href="#bodyinit" id="ref-for-bodyinit">BodyInit</a></code> object <var>object</var>, run these steps: </p>
    <ol>
     <li>
-     <p>If <var>object</var> is a <code class="idl"><a data-link-type="idl" href="https://streams.spec.whatwg.org/#readablestream" id="ref-for-readablestream④">ReadableStream</a></code> object, then: </p>
+     <p>If <var>object</var> is a <code class="idl"><a data-link-type="idl" href="https://streams.spec.whatwg.org/#readablestream" id="ref-for-readablestream⑤">ReadableStream</a></code> object, then: </p>
      <ol>
       <li>
        <p>Assert: <var>object</var> is neither <a data-link-type="dfn" href="https://streams.spec.whatwg.org/#is-readable-stream-disturbed" id="ref-for-is-readable-stream-disturbed">disturbed</a> nor <a data-link-type="dfn" href="https://streams.spec.whatwg.org/#readablestream-locked" id="ref-for-readablestream-locked">locked</a>. </p>
@@ -4506,7 +4526,7 @@ of a <a data-link-type="dfn" href="#concept-request" id="ref-for-concept-request
 steps: </p>
    <ol>
     <li>
-     <p>Let <var>stream</var> be <var>object</var> if <var>object</var> is a <code class="idl"><a data-link-type="idl" href="https://streams.spec.whatwg.org/#readablestream" id="ref-for-readablestream⑤">ReadableStream</a></code> object. Otherwise, let <var>stream</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new①">new</a> <code class="idl"><a data-link-type="idl" href="https://streams.spec.whatwg.org/#readablestream" id="ref-for-readablestream⑥">ReadableStream</a></code>, and <a data-link-type="dfn" href="https://streams.spec.whatwg.org/#readablestream-set-up" id="ref-for-readablestream-set-up①">set up</a> <var>stream</var>. </p>
+     <p>Let <var>stream</var> be <var>object</var> if <var>object</var> is a <code class="idl"><a data-link-type="idl" href="https://streams.spec.whatwg.org/#readablestream" id="ref-for-readablestream⑥">ReadableStream</a></code> object. Otherwise, let <var>stream</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new①">new</a> <code class="idl"><a data-link-type="idl" href="https://streams.spec.whatwg.org/#readablestream" id="ref-for-readablestream⑦">ReadableStream</a></code>, and <a data-link-type="dfn" href="https://streams.spec.whatwg.org/#readablestream-set-up" id="ref-for-readablestream-set-up①">set up</a> <var>stream</var>. </p>
     <li>
      <p>Let <var>action</var> be null. </p>
     <li>
@@ -4545,7 +4565,7 @@ steps: </p>
       <dd>
        <p>Set <var>source</var> to the <a data-link-type="dfn" href="https://encoding.spec.whatwg.org/#utf-8-encode" id="ref-for-utf-8-encode">UTF-8 encoding</a> of <var>object</var>. </p>
        <p>Set <var>Content-Type</var> to `<code>text/plain;charset=UTF-8</code>`. </p>
-      <dt><code class="idl"><a data-link-type="idl" href="https://streams.spec.whatwg.org/#readablestream" id="ref-for-readablestream⑦">ReadableStream</a></code> 
+      <dt><code class="idl"><a data-link-type="idl" href="https://streams.spec.whatwg.org/#readablestream" id="ref-for-readablestream⑧">ReadableStream</a></code> 
       <dd>
        <p>If <var>keepalive</var> is true, then <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-throw" id="ref-for-dfn-throw⑨">throw</a> a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror①①">TypeError</a></code>. </p>
        <p>If <var>object</var> is <a data-link-type="dfn" href="https://streams.spec.whatwg.org/#is-readable-stream-disturbed" id="ref-for-is-readable-stream-disturbed①">disturbed</a> or <a data-link-type="dfn" href="https://streams.spec.whatwg.org/#readablestream-locked" id="ref-for-readablestream-locked①">locked</a>, then <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-throw" id="ref-for-dfn-throw①⓪">throw</a> a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror①②">TypeError</a></code>. </p>
@@ -4563,7 +4583,7 @@ steps: </p>
        <p>When running <var>action</var> is done, <a data-link-type="dfn" href="https://streams.spec.whatwg.org/#readablestream-close" id="ref-for-readablestream-close①">close</a> <var>stream</var>. </p>
      </ol>
     <li>
-     <p>Let <var>body</var> be a <a data-link-type="dfn" href="#concept-body" id="ref-for-concept-body①④">body</a> whose <a data-link-type="dfn" href="#concept-body-stream" id="ref-for-concept-body-stream①②">stream</a> is <var>stream</var>, <a data-link-type="dfn" href="#concept-body-source" id="ref-for-concept-body-source①⓪">source</a> is <var>source</var>, and <a data-link-type="dfn" href="#concept-body-total-bytes" id="ref-for-concept-body-total-bytes③">length</a> is <var>length</var>. </p>
+     <p>Let <var>body</var> be a <a data-link-type="dfn" href="#concept-body" id="ref-for-concept-body①④">body</a> whose <a data-link-type="dfn" href="#concept-body-stream" id="ref-for-concept-body-stream①②">stream</a> is <var>stream</var>, <a data-link-type="dfn" href="#concept-body-source" id="ref-for-concept-body-source①③">source</a> is <var>source</var>, and <a data-link-type="dfn" href="#concept-body-total-bytes" id="ref-for-concept-body-total-bytes③">length</a> is <var>length</var>. </p>
     <li>
      <p>Return <var>body</var> and <var>Content-Type</var>. </p>
    </ol>
@@ -4585,7 +4605,7 @@ steps: </p>
     </div>
    </div>
 <pre class="idl highlight def"><c- b>interface</c-> <c- b>mixin</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="body"><code><c- g>Body</c-></code></dfn> {
-  <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="https://streams.spec.whatwg.org/#readablestream" id="ref-for-readablestream⑧"><c- n>ReadableStream</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="ReadableStream?" href="#dom-body-body" id="ref-for-dom-body-body"><c- g>body</c-></a>;
+  <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="https://streams.spec.whatwg.org/#readablestream" id="ref-for-readablestream⑨"><c- n>ReadableStream</c-></a>? <a class="idl-code" data-link-type="attribute" data-readonly data-type="ReadableStream?" href="#dom-body-body" id="ref-for-dom-body-body"><c- g>body</c-></a>;
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean①"><c- b>boolean</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="boolean" href="#dom-body-bodyused" id="ref-for-dom-body-bodyused"><c- g>bodyUsed</c-></a>;
   [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#NewObject" id="ref-for-NewObject"><c- g>NewObject</c-></a>] <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-promise" id="ref-for-idl-promise"><c- b>Promise</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-ArrayBuffer" id="ref-for-idl-ArrayBuffer②"><c- b>ArrayBuffer</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-body-arraybuffer" id="ref-for-dom-body-arraybuffer"><c- g>arrayBuffer</c-></a>();
   [<a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#NewObject" id="ref-for-NewObject①"><c- g>NewObject</c-></a>] <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-promise" id="ref-for-idl-promise①"><c- b>Promise</c-></a>&lt;<a data-link-type="idl-name" href="https://w3c.github.io/FileAPI/#dfn-Blob" id="ref-for-dfn-Blob⑤"><c- n>Blob</c-></a>> <a class="idl-code" data-link-type="method" href="#dom-body-blob" id="ref-for-dom-body-blob"><c- g>blob</c-></a>();
@@ -4604,7 +4624,7 @@ returns failure or a <a data-link-type="dfn" href="https://mimesniff.spec.whatwg
    <dl class="domintro">
     <dt><code><var>requestOrResponse</var> . <a class="idl-code" data-link-type="attribute" href="#dom-body-body" id="ref-for-dom-body-body①">body</a></code> 
     <dd>
-     <p>Returns <var>requestOrResponse</var>’s body as <code class="idl"><a data-link-type="idl" href="https://streams.spec.whatwg.org/#readablestream" id="ref-for-readablestream⑨">ReadableStream</a></code>. </p>
+     <p>Returns <var>requestOrResponse</var>’s body as <code class="idl"><a data-link-type="idl" href="https://streams.spec.whatwg.org/#readablestream" id="ref-for-readablestream①⓪">ReadableStream</a></code>. </p>
     <dt><code><var>requestOrResponse</var> . <a class="idl-code" data-link-type="attribute" href="#dom-body-bodyused" id="ref-for-dom-body-bodyused①">bodyUsed</a></code> 
     <dd>
      <p>Returns whether <var>requestOrResponse</var>’s body has been read from. </p>
@@ -4908,7 +4928,7 @@ omitted from <a class="idl-code" data-link-type="enum" href="#requestmode" id="r
    <p>A <code class="idl"><a data-link-type="idl" href="#request" id="ref-for-request⑤">Request</a></code> object also has an associated <dfn class="dfn-paneled" data-dfn-for="Request" data-dfn-type="dfn" data-export id="request-headers">headers</dfn> (null or a <code class="idl"><a data-link-type="idl" href="#headers" id="ref-for-headers⑨">Headers</a></code> object), initially null. </p>
    <p>A <code class="idl"><a data-link-type="idl" href="#request" id="ref-for-request⑥">Request</a></code> object has an associated <dfn class="dfn-paneled" data-dfn-for="Request" data-dfn-type="dfn" data-noexport id="request-signal">signal</dfn> (null or an <code class="idl"><a data-link-type="idl" href="https://dom.spec.whatwg.org/#abortsignal" id="ref-for-abortsignal②">AbortSignal</a></code> object), initially null. </p>
    <p>A <code class="idl"><a data-link-type="idl" href="#request" id="ref-for-request⑦">Request</a></code> object’s <a data-link-type="dfn" href="#concept-body-mime-type" id="ref-for-concept-body-mime-type①">MIME type</a> is to return the result of <a data-link-type="dfn" href="#concept-header-extract-mime-type" id="ref-for-concept-header-extract-mime-type⑦">extracting a MIME type</a> from its <a data-link-type="dfn" href="#concept-request-request" id="ref-for-concept-request-request">request</a>’s <a data-link-type="dfn" href="#concept-request-header-list" id="ref-for-concept-request-header-list④②">header list</a>. </p>
-   <p>A <code class="idl"><a data-link-type="idl" href="#request" id="ref-for-request⑧">Request</a></code> object’s <a data-link-type="dfn" href="#concept-body-body" id="ref-for-concept-body-body⑧">body</a> is its <a data-link-type="dfn" href="#concept-request-request" id="ref-for-concept-request-request①">request</a>’s <a data-link-type="dfn" href="#concept-request-body" id="ref-for-concept-request-body③⑤">body</a>. </p>
+   <p>A <code class="idl"><a data-link-type="idl" href="#request" id="ref-for-request⑧">Request</a></code> object’s <a data-link-type="dfn" href="#concept-body-body" id="ref-for-concept-body-body⑧">body</a> is its <a data-link-type="dfn" href="#concept-request-request" id="ref-for-concept-request-request①">request</a>’s <a data-link-type="dfn" href="#concept-request-body" id="ref-for-concept-request-body④④">body</a>. </p>
    <hr>
    <dl class="domintro">
     <dt><code><var>request</var> = new <a class="idl-code" data-link-type="constructor" href="#dom-request" id="ref-for-dom-request①">Request</a>(<var>input</var> [, <var>init</var>])</code> 
@@ -4921,7 +4941,7 @@ omitted from <a class="idl-code" data-link-type="enum" href="#requestmode" id="r
       <dt><code class="idl"><a data-link-type="idl" href="#dom-requestinit-headers" id="ref-for-dom-requestinit-headers">headers</a></code> 
       <dd>A <code class="idl"><a data-link-type="idl" href="#headers" id="ref-for-headers①⓪">Headers</a></code> object, an object literal, or an array of two-item arrays to set <var>request</var>’s <code class="idl"><a data-link-type="idl" href="#dom-request-headers" id="ref-for-dom-request-headers①">headers</a></code>. 
       <dt><code class="idl"><a data-link-type="idl" href="#dom-requestinit-body" id="ref-for-dom-requestinit-body">body</a></code> 
-      <dd>A <code class="idl"><a data-link-type="idl" href="#bodyinit" id="ref-for-bodyinit③">BodyInit</a></code> object or null to set <var>request</var>’s <a data-link-type="dfn" href="#concept-request-body" id="ref-for-concept-request-body③⑥">body</a>. 
+      <dd>A <code class="idl"><a data-link-type="idl" href="#bodyinit" id="ref-for-bodyinit③">BodyInit</a></code> object or null to set <var>request</var>’s <a data-link-type="dfn" href="#concept-request-body" id="ref-for-concept-request-body④⑤">body</a>. 
       <dt><code class="idl"><a data-link-type="idl" href="#dom-requestinit-referrer" id="ref-for-dom-requestinit-referrer">referrer</a></code> 
       <dd>A string whose value is a same-origin URL, "<code>about:client</code>", or the empty string,
    to set <var>request</var>’s <a data-link-type="dfn" href="#concept-request-referrer" id="ref-for-concept-request-referrer⑧">referrer</a>. 
@@ -5236,7 +5256,7 @@ omitted from <a class="idl-code" data-link-type="enum" href="#requestmode" id="r
        <p>Otherwise, <a data-link-type="dfn" href="#concept-headers-fill" id="ref-for-concept-headers-fill①">fill</a> <a data-link-type="dfn" href="https://heycam.github.io/webidl/#this" id="ref-for-this④③">this</a>’s <a data-link-type="dfn" href="#request-headers" id="ref-for-request-headers⑥">headers</a> with <var>headers</var>. </p>
      </ol>
     <li>
-     <p>Let <var>inputBody</var> be <var>input</var>’s <a data-link-type="dfn" href="#concept-request-request" id="ref-for-concept-request-request⑦">request</a>’s <a data-link-type="dfn" href="#concept-request-body" id="ref-for-concept-request-body③⑦">body</a> if <var>input</var> is a <code class="idl"><a data-link-type="idl" href="#request" id="ref-for-request①③">Request</a></code> object; otherwise null. </p>
+     <p>Let <var>inputBody</var> be <var>input</var>’s <a data-link-type="dfn" href="#concept-request-request" id="ref-for-concept-request-request⑦">request</a>’s <a data-link-type="dfn" href="#concept-request-body" id="ref-for-concept-request-body④⑥">body</a> if <var>input</var> is a <code class="idl"><a data-link-type="idl" href="#request" id="ref-for-request①③">Request</a></code> object; otherwise null. </p>
     <li>
      <p>If either <var>init</var>["<code class="idl"><a data-link-type="idl" href="#dom-requestinit-body" id="ref-for-dom-requestinit-body①">body</a></code>"] <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists①⑤">exists</a> and is non-null or <var>inputBody</var> is non-null, and <var>request</var>’s <a data-link-type="dfn" href="#concept-request-method" id="ref-for-concept-request-method②③">method</a> is
  `<code>GET</code>` or `<code>HEAD</code>`, then <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-throw" id="ref-for-dfn-throw②②">throw</a> a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror②⑤">TypeError</a></code>. </p>
@@ -5255,7 +5275,7 @@ omitted from <a class="idl-code" data-link-type="enum" href="#requestmode" id="r
     <li>
      <p>Let <var>inputOrInitBody</var> be <var>initBody</var> if it is non-null; otherwise <var>inputBody</var>. </p>
     <li>
-     <p>If <var>inputOrInitBody</var> is non-null and <var>inputOrInitBody</var>’s <a data-link-type="dfn" href="#concept-body-source" id="ref-for-concept-body-source①①">source</a> is null, then: </p>
+     <p>If <var>inputOrInitBody</var> is non-null and <var>inputOrInitBody</var>’s <a data-link-type="dfn" href="#concept-body-source" id="ref-for-concept-body-source①④">source</a> is null, then: </p>
      <ol>
       <li>
        <p>If <a data-link-type="dfn" href="https://heycam.github.io/webidl/#this" id="ref-for-this④⑥">this</a>’s <a data-link-type="dfn" href="#concept-request-request" id="ref-for-concept-request-request⑧">request</a>’s <a data-link-type="dfn" href="#concept-request-mode" id="ref-for-concept-request-mode②①">mode</a> is neither
@@ -5274,7 +5294,7 @@ omitted from <a class="idl-code" data-link-type="enum" href="#requestmode" id="r
        <p>Set <var>finalBody</var> to the result of <a data-link-type="dfn" href="https://streams.spec.whatwg.org/#readablestream-create-a-proxy" id="ref-for-readablestream-create-a-proxy">creating a proxy</a> for <var>inputBody</var>. </p>
      </ol>
     <li>
-     <p>Set <a data-link-type="dfn" href="https://heycam.github.io/webidl/#this" id="ref-for-this④⑧">this</a>’s <a data-link-type="dfn" href="#concept-request-request" id="ref-for-concept-request-request①⓪">request</a>’s <a data-link-type="dfn" href="#concept-request-body" id="ref-for-concept-request-body③⑧">body</a> to <var>finalBody</var>. </p>
+     <p>Set <a data-link-type="dfn" href="https://heycam.github.io/webidl/#this" id="ref-for-this④⑧">this</a>’s <a data-link-type="dfn" href="#concept-request-request" id="ref-for-concept-request-request①⓪">request</a>’s <a data-link-type="dfn" href="#concept-request-body" id="ref-for-concept-request-body④⑦">body</a> to <var>finalBody</var>. </p>
     <li>
      <p>Set <a data-link-type="dfn" href="https://heycam.github.io/webidl/#this" id="ref-for-this④⑨">this</a>’s <a data-link-type="dfn" href="#request-signal" id="ref-for-request-signal③">signal</a> to a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new⑥">new</a> <code class="idl"><a data-link-type="idl" href="https://dom.spec.whatwg.org/#abortsignal" id="ref-for-abortsignal⑥">AbortSignal</a></code> object
  with <a data-link-type="dfn" href="https://heycam.github.io/webidl/#this" id="ref-for-this⑤⓪">this</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm①">relevant Realm</a>. </p>
@@ -5558,7 +5578,7 @@ set; otherwise false. </p>
 
 <c- b>enum</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="enum" data-export id="responsetype"><code><c- g>ResponseType</c-></code></dfn> { <dfn class="idl-code" data-dfn-for="ResponseType" data-dfn-type="enum-value" data-export id="dom-responsetype-basic"><code><c- s>"basic"</c-></code><a class="self-link" href="#dom-responsetype-basic"></a></dfn>, <dfn class="idl-code" data-dfn-for="ResponseType" data-dfn-type="enum-value" data-export id="dom-responsetype-cors"><code><c- s>"cors"</c-></code><a class="self-link" href="#dom-responsetype-cors"></a></dfn>, <dfn class="idl-code" data-dfn-for="ResponseType" data-dfn-type="enum-value" data-export id="dom-responsetype-default"><code><c- s>"default"</c-></code><a class="self-link" href="#dom-responsetype-default"></a></dfn>, <dfn class="idl-code" data-dfn-for="ResponseType" data-dfn-type="enum-value" data-export id="dom-responsetype-error"><code><c- s>"error"</c-></code><a class="self-link" href="#dom-responsetype-error"></a></dfn>, <dfn class="idl-code" data-dfn-for="ResponseType" data-dfn-type="enum-value" data-export id="dom-responsetype-opaque"><code><c- s>"opaque"</c-></code><a class="self-link" href="#dom-responsetype-opaque"></a></dfn>, <dfn class="idl-code" data-dfn-for="ResponseType" data-dfn-type="enum-value" data-export id="dom-responsetype-opaqueredirect"><code><c- s>"opaqueredirect"</c-></code><a class="self-link" href="#dom-responsetype-opaqueredirect"></a></dfn> };
 </pre>
-   <p>A <code class="idl"><a data-link-type="idl" href="#response" id="ref-for-response⑤">Response</a></code> object has an associated <dfn class="dfn-paneled" data-dfn-for="Response" data-dfn-type="dfn" data-export id="concept-response-response">response</dfn> (a <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response⑥①">response</a>). </p>
+   <p>A <code class="idl"><a data-link-type="idl" href="#response" id="ref-for-response⑤">Response</a></code> object has an associated <dfn class="dfn-paneled" data-dfn-for="Response" data-dfn-type="dfn" data-export id="concept-response-response">response</dfn> (a <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response⑥②">response</a>). </p>
    <p>A <code class="idl"><a data-link-type="idl" href="#response" id="ref-for-response⑥">Response</a></code> object also has an associated <dfn class="dfn-paneled" data-dfn-for="Response" data-dfn-type="dfn" data-export id="response-headers">headers</dfn> (null or a <code class="idl"><a data-link-type="idl" href="#headers" id="ref-for-headers①⑥">Headers</a></code> object), initially null. </p>
    <p>A <code class="idl"><a data-link-type="idl" href="#response" id="ref-for-response⑦">Response</a></code> object’s <a data-link-type="dfn" href="#concept-body-mime-type" id="ref-for-concept-body-mime-type②">MIME type</a> is to return the result of <a data-link-type="dfn" href="#concept-header-extract-mime-type" id="ref-for-concept-header-extract-mime-type⑧">extracting a MIME type</a> from its <a data-link-type="dfn" href="#concept-response-response" id="ref-for-concept-response-response">response</a>’s <a data-link-type="dfn" href="#concept-response-header-list" id="ref-for-concept-response-header-list③②">header list</a>. </p>
    <p>A <code class="idl"><a data-link-type="idl" href="#response" id="ref-for-response⑧">Response</a></code> object’s <a data-link-type="dfn" href="#concept-body-body" id="ref-for-concept-body-body⑨">body</a> is its <a data-link-type="dfn" href="#concept-response-response" id="ref-for-concept-response-response①">response</a>’s <a data-link-type="dfn" href="#concept-response-body" id="ref-for-concept-response-body②②">body</a>. </p>
@@ -5600,7 +5620,7 @@ set; otherwise false. </p>
      <p>Returns a clone of <var>response</var>. </p>
    </dl>
    <hr>
-   <p>To <dfn class="dfn-paneled" data-dfn-for="Response" data-dfn-type="dfn" data-export data-lt="create|creating" id="response-create">create</dfn> a <code class="idl"><a data-link-type="idl" href="#response" id="ref-for-response①④">Response</a></code> object, given a <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response⑥②">response</a> <var>response</var>, <a data-link-type="dfn" href="#headers-guard" id="ref-for-headers-guard②">headers guard</a> <var>guard</var>, and Realm <var>realm</var>, run these steps: </p>
+   <p>To <dfn class="dfn-paneled" data-dfn-for="Response" data-dfn-type="dfn" data-export data-lt="create|creating" id="response-create">create</dfn> a <code class="idl"><a data-link-type="idl" href="#response" id="ref-for-response①④">Response</a></code> object, given a <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response⑥③">response</a> <var>response</var>, <a data-link-type="dfn" href="#headers-guard" id="ref-for-headers-guard②">headers guard</a> <var>guard</var>, and Realm <var>realm</var>, run these steps: </p>
    <ol>
     <li>
      <p>Let <var>responseObject</var> be a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new⑦">new</a> <code class="idl"><a data-link-type="idl" href="#response" id="ref-for-response①⑤">Response</a></code> object with <var>realm</var>. </p>
@@ -5636,7 +5656,7 @@ set; otherwise false. </p>
     <li>
      <p>If <var>init</var>["<code class="idl"><a data-link-type="idl" href="#dom-responseinit-statustext" id="ref-for-dom-responseinit-statustext">statusText</a></code>"] does not match the <a data-link-type="dfn" href="https://tools.ietf.org/html/rfc7230#section-3.1.2" id="ref-for-section-3.1.2">reason-phrase</a> token production, then <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-throw" id="ref-for-dfn-throw②⑥">throw</a> a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror②⑨">TypeError</a></code>. </p>
     <li>
-     <p>Set <a data-link-type="dfn" href="https://heycam.github.io/webidl/#this" id="ref-for-this⑦③">this</a>’s <a data-link-type="dfn" href="#concept-response-response" id="ref-for-concept-response-response③">response</a> to a new <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response⑥③">response</a>. </p>
+     <p>Set <a data-link-type="dfn" href="https://heycam.github.io/webidl/#this" id="ref-for-this⑦③">this</a>’s <a data-link-type="dfn" href="#concept-response-response" id="ref-for-concept-response-response③">response</a> to a new <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response⑥④">response</a>. </p>
     <li>
      <p>Set <a data-link-type="dfn" href="https://heycam.github.io/webidl/#this" id="ref-for-this⑦④">this</a>’s <a data-link-type="dfn" href="#response-headers" id="ref-for-response-headers①">headers</a> to a <a data-link-type="dfn" href="https://heycam.github.io/webidl/#new" id="ref-for-new⑨">new</a> <code class="idl"><a data-link-type="idl" href="#headers" id="ref-for-headers①⑨">Headers</a></code> object with <a data-link-type="dfn" href="https://heycam.github.io/webidl/#this" id="ref-for-this⑦⑤">this</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm③">relevant Realm</a>, whose <a data-link-type="dfn" href="#concept-headers-header-list" id="ref-for-concept-headers-header-list①⑥">header list</a> is <a data-link-type="dfn" href="https://heycam.github.io/webidl/#this" id="ref-for-this⑦⑥">this</a>’s <a data-link-type="dfn" href="#concept-response-response" id="ref-for-concept-response-response④">response</a>’s <a data-link-type="dfn" href="#concept-response-header-list" id="ref-for-concept-response-header-list③④">header list</a> and <a data-link-type="dfn" href="#concept-headers-guard" id="ref-for-concept-headers-guard②①">guard</a> is
  "<code>response</code>". </p>
@@ -5678,7 +5698,7 @@ set; otherwise false. </p>
     </div>
    </div>
    <p>The static <dfn class="dfn-paneled idl-code" data-dfn-for="Response" data-dfn-type="method" data-export id="dom-response-error"><code>error()</code></dfn> method steps are to return the
-result of <a data-link-type="dfn" href="#response-create" id="ref-for-response-create">creating</a> a <code class="idl"><a data-link-type="idl" href="#response" id="ref-for-response①⑥">Response</a></code> object, given a new <a data-link-type="dfn" href="#concept-network-error" id="ref-for-concept-network-error⑤⑧">network error</a>,
+result of <a data-link-type="dfn" href="#response-create" id="ref-for-response-create">creating</a> a <code class="idl"><a data-link-type="idl" href="#response" id="ref-for-response①⑥">Response</a></code> object, given a new <a data-link-type="dfn" href="#concept-network-error" id="ref-for-concept-network-error⑤⑨">network error</a>,
 "<code>immutable</code>", and <a data-link-type="dfn" href="https://heycam.github.io/webidl/#this" id="ref-for-this⑧③">this</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm④">relevant Realm</a>. </p>
    <div class="mdn-anno wrapped">
     <button class="mdn-anno-btn"><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></button>
@@ -5706,7 +5726,7 @@ are: </p>
     <li>
      <p>If <var>status</var> is not a <a data-link-type="dfn" href="#redirect-status" id="ref-for-redirect-status②">redirect status</a>, then <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-throw" id="ref-for-dfn-throw②⑨">throw</a> a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#exceptiondef-rangeerror" id="ref-for-exceptiondef-rangeerror②">RangeError</a></code>. </p>
     <li>
-     <p>Let <var>responseObject</var> be the result of <a data-link-type="dfn" href="#response-create" id="ref-for-response-create①">creating</a> a <code class="idl"><a data-link-type="idl" href="#response" id="ref-for-response①⑦">Response</a></code> object, given a new <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response⑥④">response</a>, "<code>immutable</code>", and <a data-link-type="dfn" href="https://heycam.github.io/webidl/#this" id="ref-for-this⑧④">this</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm⑤">relevant Realm</a>. </p>
+     <p>Let <var>responseObject</var> be the result of <a data-link-type="dfn" href="#response-create" id="ref-for-response-create①">creating</a> a <code class="idl"><a data-link-type="idl" href="#response" id="ref-for-response①⑦">Response</a></code> object, given a new <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response⑥⑤">response</a>, "<code>immutable</code>", and <a data-link-type="dfn" href="https://heycam.github.io/webidl/#this" id="ref-for-this⑧④">this</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-realm" id="ref-for-concept-relevant-realm⑤">relevant Realm</a>. </p>
     <li>
      <p>Set <var>responseObject</var>’s <a data-link-type="dfn" href="#concept-response-response" id="ref-for-concept-response-response①⓪">response</a>’s <a data-link-type="dfn" href="#concept-response-status" id="ref-for-concept-response-status②④">status</a> to <var>status</var>. </p>
     <li>
@@ -5768,9 +5788,9 @@ to true. </p>
    </div>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="Response" data-dfn-type="attribute" data-export id="dom-response-redirected"><code>redirected</code></dfn> getter steps are to return true if <a data-link-type="dfn" href="https://heycam.github.io/webidl/#this" id="ref-for-this⑧⑧">this</a>’s <a data-link-type="dfn" href="#concept-response-response" id="ref-for-concept-response-response①⑤">response</a>’s <a data-link-type="dfn" href="#concept-response-url-list" id="ref-for-concept-response-url-list①③">URL list</a> has more than one item;
 otherwise false. </p>
-   <p class="note" role="note">To filter out <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response⑥⑤">responses</a> that are the result of a
+   <p class="note" role="note">To filter out <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response⑥⑥">responses</a> that are the result of a
 redirect, do this directly through the API, e.g., <code>fetch(url, { redirect:"error" })</code>.
-This way a potentially unsafe <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response⑥⑥">response</a> cannot accidentally leak. </p>
+This way a potentially unsafe <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response⑥⑦">response</a> cannot accidentally leak. </p>
    <div class="mdn-anno wrapped">
     <button class="mdn-anno-btn"><b class="all-engines-flag" title="This feature is in all current engines.">✔</b><span>MDN</span></button>
     <div class="feature">
@@ -5941,7 +5961,8 @@ otherwise false. </p>
        <p><a data-link-type="dfn" href="#concept-fetch-terminate" id="ref-for-concept-fetch-terminate②⓪">Terminate</a> the ongoing fetch with the aborted flag set. </p>
      </ol>
     <li>
-     <p>Let <var>handleFetchDone</var> be to <a data-link-type="dfn" href="#finalize-and-report-timing" id="ref-for-finalize-and-report-timing">finalize and report timing</a> with <var>response</var>, <var>globalObject</var>, and "<code>fetch</code>". </p>
+     <p>Let <var>handleFetchDone</var> given <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response⑥⑧">response</a> <var>response</var> be to <a data-link-type="dfn" href="#finalize-and-report-timing" id="ref-for-finalize-and-report-timing">finalize and report timing</a> with <var>response</var>, <var>globalObject</var>, and
+ "<code>fetch</code>". </p>
     <li>
      <p><a data-link-type="dfn" href="#concept-fetch" id="ref-for-concept-fetch②⑨">Fetch</a> <var>request</var> with <a data-link-type="dfn" href="#fetch-processresponsedone" id="ref-for-fetch-processresponsedone"><i>processResponseDone</i></a> set to <var>handleFetchDone</var>, and <a data-link-type="dfn" href="#process-response" id="ref-for-process-response"><i>processResponse</i></a> given <var>response</var> being these substeps: </p>
      <ol>
@@ -5951,7 +5972,7 @@ otherwise false. </p>
        <p>If <var>response</var>’s <a data-link-type="dfn" href="#concept-response-aborted" id="ref-for-concept-response-aborted③">aborted flag</a> is set, then <a data-link-type="dfn" href="#abort-fetch" id="ref-for-abort-fetch②">abort fetch</a> with <var>p</var>, <var>request</var>, and <var>responseObject</var>, and terminate these
    substeps. </p>
       <li>
-       <p>If <var>response</var> is a <a data-link-type="dfn" href="#concept-network-error" id="ref-for-concept-network-error⑤⑨">network error</a>, then <a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject①">reject</a> <var>p</var> with a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror③③">TypeError</a></code> and terminate these substeps. </p>
+       <p>If <var>response</var> is a <a data-link-type="dfn" href="#concept-network-error" id="ref-for-concept-network-error⑥⓪">network error</a>, then <a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject①">reject</a> <var>p</var> with a <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror③③">TypeError</a></code> and terminate these substeps. </p>
       <li>
        <p>Set <var>responseObject</var> to the result of <a data-link-type="dfn" href="#response-create" id="ref-for-response-create③">creating</a> a <code class="idl"><a data-link-type="idl" href="#response" id="ref-for-response②⓪">Response</a></code> object, given <var>response</var>, "<code>immutable</code>", and <var>relevantRealm</var>. </p>
       <li>
@@ -5968,7 +5989,7 @@ otherwise false. </p>
      <p><a data-link-type="dfn" href="https://heycam.github.io/webidl/#reject" id="ref-for-reject②">Reject</a> <var>promise</var> with <var>error</var>. </p>
      <p class="note" role="note">This is a no-op if <var>promise</var> has already fulfilled. </p>
     <li>
-     <p>If <var>request</var>’s <a data-link-type="dfn" href="#concept-request-body" id="ref-for-concept-request-body③⑨">body</a> is not null and is <a data-link-type="dfn" href="https://streams.spec.whatwg.org/#readablestream-readable" id="ref-for-readablestream-readable③">readable</a>, then <a data-link-type="dfn" href="https://streams.spec.whatwg.org/#readablestream-cancel" id="ref-for-readablestream-cancel①">cancel</a> <var>request</var>’s <a data-link-type="dfn" href="#concept-request-body" id="ref-for-concept-request-body④⓪">body</a> with <var>error</var>. </p>
+     <p>If <var>request</var>’s <a data-link-type="dfn" href="#concept-request-body" id="ref-for-concept-request-body④⑧">body</a> is not null and is <a data-link-type="dfn" href="https://streams.spec.whatwg.org/#readablestream-readable" id="ref-for-readablestream-readable③">readable</a>, then <a data-link-type="dfn" href="https://streams.spec.whatwg.org/#readablestream-cancel" id="ref-for-readablestream-cancel①">cancel</a> <var>request</var>’s <a data-link-type="dfn" href="#concept-request-body" id="ref-for-concept-request-body④⑨">body</a> with <var>error</var>. </p>
     <li>
      <p>If <var>responseObject</var> is null, then return. </p>
     <li>
@@ -6084,7 +6105,7 @@ therefore not shareable, a WebSocket connection is very close to identical to an
   steps: </p>
      <ol>
       <li>
-       <p>If <var>response</var> is a <a data-link-type="dfn" href="#concept-network-error" id="ref-for-concept-network-error⑥⓪">network error</a> or its <a data-link-type="dfn" href="#concept-response-status" id="ref-for-concept-response-status②⑦">status</a> is not
+       <p>If <var>response</var> is a <a data-link-type="dfn" href="#concept-network-error" id="ref-for-concept-network-error⑥①">network error</a> or its <a data-link-type="dfn" href="#concept-response-status" id="ref-for-concept-response-status②⑦">status</a> is not
    101, <a data-link-type="dfn" href="#fail-the-websocket-connection" id="ref-for-fail-the-websocket-connection">fail the WebSocket connection</a>. </p>
       <li>
        <p>If <var>protocols</var> is not the empty list and <a data-link-type="dfn" href="#extract-header-list-values" id="ref-for-extract-header-list-values⑥">extracting header list values</a> given
@@ -6175,7 +6196,7 @@ Developers have almost no control over <a data-link-type="dfn" href="#forbidden-
 `<code>Accept</code>` and have the means to constrain and omit
 `<code>Referer</code>` for instance. </p>
    <h3 class="no-num heading settled dfn-paneled" data-dfn-type="dfn" data-noexport id="atomic-http-redirect-handling"><span class="content">Atomic HTTP redirect handling</span><a class="self-link" href="#atomic-http-redirect-handling" id="ref-for-atomic-http-redirect-handling②"></a></h3>
-   <p>Redirects (a <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response⑥⑦">response</a> whose <a data-link-type="dfn" href="#concept-response-status" id="ref-for-concept-response-status②⑧">status</a> or <a data-link-type="dfn" href="#concept-internal-response" id="ref-for-concept-internal-response①④">internal response</a>’s (if any) <a data-link-type="dfn" href="#concept-response-status" id="ref-for-concept-response-status②⑨">status</a> is a <a data-link-type="dfn" href="#redirect-status" id="ref-for-redirect-status③">redirect status</a>) are not exposed to APIs. Exposing redirects might leak information not
+   <p>Redirects (a <a data-link-type="dfn" href="#concept-response" id="ref-for-concept-response⑥⑨">response</a> whose <a data-link-type="dfn" href="#concept-response-status" id="ref-for-concept-response-status②⑧">status</a> or <a data-link-type="dfn" href="#concept-internal-response" id="ref-for-concept-internal-response①④">internal response</a>’s (if any) <a data-link-type="dfn" href="#concept-response-status" id="ref-for-concept-response-status②⑨">status</a> is a <a data-link-type="dfn" href="#redirect-status" id="ref-for-redirect-status③">redirect status</a>) are not exposed to APIs. Exposing redirects might leak information not
 otherwise available through a cross-site scripting attack. </p>
    <p class="example" id="example-xss-redirect"><a class="self-link" href="#example-xss-redirect"></a>A fetch to <code>https://example.org/auth</code> that includes a <code>Cookie</code> marked <code>HttpOnly</code> could result in a redirect to <code>https://other-origin.invalid/4af955781ea1c84a3b11</code>. This new URL contains a
 secret. If we expose redirects that secret would be available through a cross-site
@@ -7958,9 +7979,9 @@ response to request be blocked due to nosniff?</a>
    <ul>
     <li><a href="#ref-for-readablestream">2.2.4. Bodies</a>
     <li><a href="#ref-for-readablestream①">2.2.5. Requests</a>
-    <li><a href="#ref-for-readablestream②">4.7. HTTP-network fetch</a>
-    <li><a href="#ref-for-readablestream③">5.2. BodyInit unions</a> <a href="#ref-for-readablestream④">(2)</a> <a href="#ref-for-readablestream⑤">(3)</a> <a href="#ref-for-readablestream⑥">(4)</a> <a href="#ref-for-readablestream⑦">(5)</a>
-    <li><a href="#ref-for-readablestream⑧">5.3. Body mixin</a> <a href="#ref-for-readablestream⑨">(2)</a>
+    <li><a href="#ref-for-readablestream②">4.7. HTTP-network fetch</a> <a href="#ref-for-readablestream③">(2)</a>
+    <li><a href="#ref-for-readablestream④">5.2. BodyInit unions</a> <a href="#ref-for-readablestream⑤">(2)</a> <a href="#ref-for-readablestream⑥">(3)</a> <a href="#ref-for-readablestream⑦">(4)</a> <a href="#ref-for-readablestream⑧">(5)</a>
+    <li><a href="#ref-for-readablestream⑨">5.3. Body mixin</a> <a href="#ref-for-readablestream①⓪">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-readablestreamdefaultreader">
@@ -9807,9 +9828,9 @@ response to request be blocked due to nosniff?</a>
     <li><a href="#ref-for-concept-body-source">2.2.6. Responses</a>
     <li><a href="#ref-for-concept-body-source①">4.4. HTTP-redirect fetch</a> <a href="#ref-for-concept-body-source②">(2)</a> <a href="#ref-for-concept-body-source③">(3)</a>
     <li><a href="#ref-for-concept-body-source④">4.6. HTTP-network-or-cache fetch</a> <a href="#ref-for-concept-body-source⑤">(2)</a> <a href="#ref-for-concept-body-source⑥">(3)</a> <a href="#ref-for-concept-body-source⑦">(4)</a> <a href="#ref-for-concept-body-source⑧">(5)</a>
-    <li><a href="#ref-for-concept-body-source⑨">4.7. HTTP-network fetch</a>
-    <li><a href="#ref-for-concept-body-source①⓪">5.2. BodyInit unions</a>
-    <li><a href="#ref-for-concept-body-source①①">5.4. Request class</a>
+    <li><a href="#ref-for-concept-body-source⑨">4.7. HTTP-network fetch</a> <a href="#ref-for-concept-body-source①⓪">(2)</a> <a href="#ref-for-concept-body-source①①">(3)</a> <a href="#ref-for-concept-body-source①②">(4)</a>
+    <li><a href="#ref-for-concept-body-source①③">5.2. BodyInit unions</a>
+    <li><a href="#ref-for-concept-body-source①④">5.4. Request class</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="concept-body-total-bytes">
@@ -9948,9 +9969,9 @@ response to request be blocked due to nosniff?</a>
     <li><a href="#ref-for-concept-request-body⑦">4.3. HTTP fetch</a> <a href="#ref-for-concept-request-body⑧">(2)</a> <a href="#ref-for-concept-request-body⑨">(3)</a>
     <li><a href="#ref-for-concept-request-body①⓪">4.4. HTTP-redirect fetch</a> <a href="#ref-for-concept-request-body①①">(2)</a> <a href="#ref-for-concept-request-body①②">(3)</a> <a href="#ref-for-concept-request-body①③">(4)</a> <a href="#ref-for-concept-request-body①④">(5)</a> <a href="#ref-for-concept-request-body①⑤">(6)</a> <a href="#ref-for-concept-request-body①⑥">(7)</a>
     <li><a href="#ref-for-concept-request-body①⑦">4.6. HTTP-network-or-cache fetch</a> <a href="#ref-for-concept-request-body①⑧">(2)</a> <a href="#ref-for-concept-request-body①⑨">(3)</a> <a href="#ref-for-concept-request-body②⓪">(4)</a> <a href="#ref-for-concept-request-body②①">(5)</a> <a href="#ref-for-concept-request-body②②">(6)</a> <a href="#ref-for-concept-request-body②③">(7)</a> <a href="#ref-for-concept-request-body②④">(8)</a> <a href="#ref-for-concept-request-body②⑤">(9)</a> <a href="#ref-for-concept-request-body②⑥">(10)</a> <a href="#ref-for-concept-request-body②⑦">(11)</a> <a href="#ref-for-concept-request-body②⑧">(12)</a> <a href="#ref-for-concept-request-body②⑨">(13)</a> <a href="#ref-for-concept-request-body③⓪">(14)</a>
-    <li><a href="#ref-for-concept-request-body③①">4.7. HTTP-network fetch</a> <a href="#ref-for-concept-request-body③②">(2)</a> <a href="#ref-for-concept-request-body③③">(3)</a> <a href="#ref-for-concept-request-body③④">(4)</a>
-    <li><a href="#ref-for-concept-request-body③⑤">5.4. Request class</a> <a href="#ref-for-concept-request-body③⑥">(2)</a> <a href="#ref-for-concept-request-body③⑦">(3)</a> <a href="#ref-for-concept-request-body③⑧">(4)</a>
-    <li><a href="#ref-for-concept-request-body③⑨">5.6. Fetch method</a> <a href="#ref-for-concept-request-body④⓪">(2)</a>
+    <li><a href="#ref-for-concept-request-body③①">4.7. HTTP-network fetch</a> <a href="#ref-for-concept-request-body③②">(2)</a> <a href="#ref-for-concept-request-body③③">(3)</a> <a href="#ref-for-concept-request-body③④">(4)</a> <a href="#ref-for-concept-request-body③⑤">(5)</a> <a href="#ref-for-concept-request-body③⑥">(6)</a> <a href="#ref-for-concept-request-body③⑦">(7)</a> <a href="#ref-for-concept-request-body③⑧">(8)</a> <a href="#ref-for-concept-request-body③⑨">(9)</a> <a href="#ref-for-concept-request-body④⓪">(10)</a> <a href="#ref-for-concept-request-body④①">(11)</a> <a href="#ref-for-concept-request-body④②">(12)</a> <a href="#ref-for-concept-request-body④③">(13)</a>
+    <li><a href="#ref-for-concept-request-body④④">5.4. Request class</a> <a href="#ref-for-concept-request-body④⑤">(2)</a> <a href="#ref-for-concept-request-body④⑥">(3)</a> <a href="#ref-for-concept-request-body④⑦">(4)</a>
+    <li><a href="#ref-for-concept-request-body④⑧">5.6. Fetch method</a> <a href="#ref-for-concept-request-body④⑨">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="concept-request-client">
@@ -10314,16 +10335,17 @@ response to request be blocked due to nosniff?</a> <a href="#ref-for-request-des
     <li><a href="#ref-for-concept-response③③">3.2.3. HTTP responses</a> <a href="#ref-for-concept-response③④">(2)</a>
     <li><a href="#ref-for-concept-response③⑤">3.5. `X-Content-Type-Options` header</a>
     <li><a href="#ref-for-concept-response③⑥">3.7. `Cross-Origin-Resource-Policy` header</a> <a href="#ref-for-concept-response③⑦">(2)</a> <a href="#ref-for-concept-response③⑧">(3)</a> <a href="#ref-for-concept-response③⑨">(4)</a>
-    <li><a href="#ref-for-concept-response④⓪">4. Fetching</a> <a href="#ref-for-concept-response④①">(2)</a> <a href="#ref-for-concept-response④②">(3)</a>
-    <li><a href="#ref-for-concept-response④③">4.1. Main fetch</a> <a href="#ref-for-concept-response④④">(2)</a> <a href="#ref-for-concept-response④⑤">(3)</a> <a href="#ref-for-concept-response④⑥">(4)</a> <a href="#ref-for-concept-response④⑦">(5)</a>
-    <li><a href="#ref-for-concept-response④⑧">4.2. Scheme fetch</a> <a href="#ref-for-concept-response④⑨">(2)</a> <a href="#ref-for-concept-response⑤⓪">(3)</a>
-    <li><a href="#ref-for-concept-response⑤①">4.3. HTTP fetch</a> <a href="#ref-for-concept-response⑤②">(2)</a>
-    <li><a href="#ref-for-concept-response⑤③">4.4. HTTP-redirect fetch</a>
-    <li><a href="#ref-for-concept-response⑤④">4.5. Navigate-redirect fetch</a> <a href="#ref-for-concept-response⑤⑤">(2)</a>
-    <li><a href="#ref-for-concept-response⑤⑥">4.6. HTTP-network-or-cache fetch</a>
-    <li><a href="#ref-for-concept-response⑤⑦">4.7. HTTP-network fetch</a> <a href="#ref-for-concept-response⑤⑧">(2)</a> <a href="#ref-for-concept-response⑤⑨">(3)</a> <a href="#ref-for-concept-response⑥⓪">(4)</a>
-    <li><a href="#ref-for-concept-response⑥①">5.5. Response class</a> <a href="#ref-for-concept-response⑥②">(2)</a> <a href="#ref-for-concept-response⑥③">(3)</a> <a href="#ref-for-concept-response⑥④">(4)</a> <a href="#ref-for-concept-response⑥⑤">(5)</a> <a href="#ref-for-concept-response⑥⑥">(6)</a>
-    <li><a href="#ref-for-concept-response⑥⑦">Atomic HTTP redirect handling</a>
+    <li><a href="#ref-for-concept-response④⓪">4. Fetching</a> <a href="#ref-for-concept-response④①">(2)</a> <a href="#ref-for-concept-response④②">(3)</a> <a href="#ref-for-concept-response④③">(4)</a>
+    <li><a href="#ref-for-concept-response④④">4.1. Main fetch</a> <a href="#ref-for-concept-response④⑤">(2)</a> <a href="#ref-for-concept-response④⑥">(3)</a> <a href="#ref-for-concept-response④⑦">(4)</a> <a href="#ref-for-concept-response④⑧">(5)</a>
+    <li><a href="#ref-for-concept-response④⑨">4.2. Scheme fetch</a> <a href="#ref-for-concept-response⑤⓪">(2)</a> <a href="#ref-for-concept-response⑤①">(3)</a>
+    <li><a href="#ref-for-concept-response⑤②">4.3. HTTP fetch</a> <a href="#ref-for-concept-response⑤③">(2)</a>
+    <li><a href="#ref-for-concept-response⑤④">4.4. HTTP-redirect fetch</a>
+    <li><a href="#ref-for-concept-response⑤⑤">4.5. Navigate-redirect fetch</a> <a href="#ref-for-concept-response⑤⑥">(2)</a>
+    <li><a href="#ref-for-concept-response⑤⑦">4.6. HTTP-network-or-cache fetch</a>
+    <li><a href="#ref-for-concept-response⑤⑧">4.7. HTTP-network fetch</a> <a href="#ref-for-concept-response⑤⑨">(2)</a> <a href="#ref-for-concept-response⑥⓪">(3)</a> <a href="#ref-for-concept-response⑥①">(4)</a>
+    <li><a href="#ref-for-concept-response⑥②">5.5. Response class</a> <a href="#ref-for-concept-response⑥③">(2)</a> <a href="#ref-for-concept-response⑥④">(3)</a> <a href="#ref-for-concept-response⑥⑤">(4)</a> <a href="#ref-for-concept-response⑥⑥">(5)</a> <a href="#ref-for-concept-response⑥⑦">(6)</a>
+    <li><a href="#ref-for-concept-response⑥⑧">5.6. Fetch method</a>
+    <li><a href="#ref-for-concept-response⑥⑨">Atomic HTTP redirect handling</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="concept-response-type">
@@ -10424,7 +10446,8 @@ response to request be blocked due to nosniff?</a> <a href="#ref-for-concept-res
   <aside class="dfn-panel" data-for="concept-response-cache-state">
    <b><a href="#concept-response-cache-state">#concept-response-cache-state</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-response-cache-state">4.6. HTTP-network-or-cache fetch</a> <a href="#ref-for-concept-response-cache-state①">(2)</a>
+    <li><a href="#ref-for-concept-response-cache-state">4.1. Main fetch</a>
+    <li><a href="#ref-for-concept-response-cache-state①">4.6. HTTP-network-or-cache fetch</a> <a href="#ref-for-concept-response-cache-state②">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="concept-response-csp-list">
@@ -10481,11 +10504,11 @@ response to request be blocked due to nosniff?</a> <a href="#ref-for-concept-res
     <li><a href="#ref-for-concept-network-error②⑧">4.3. HTTP fetch</a> <a href="#ref-for-concept-network-error②⑨">(2)</a> <a href="#ref-for-concept-network-error③⓪">(3)</a> <a href="#ref-for-concept-network-error③①">(4)</a> <a href="#ref-for-concept-network-error③②">(5)</a>
     <li><a href="#ref-for-concept-network-error③③">4.4. HTTP-redirect fetch</a> <a href="#ref-for-concept-network-error③④">(2)</a> <a href="#ref-for-concept-network-error③⑤">(3)</a> <a href="#ref-for-concept-network-error③⑥">(4)</a> <a href="#ref-for-concept-network-error③⑦">(5)</a> <a href="#ref-for-concept-network-error③⑧">(6)</a>
     <li><a href="#ref-for-concept-network-error③⑨">4.6. HTTP-network-or-cache fetch</a> <a href="#ref-for-concept-network-error④⓪">(2)</a> <a href="#ref-for-concept-network-error④①">(3)</a> <a href="#ref-for-concept-network-error④②">(4)</a> <a href="#ref-for-concept-network-error④③">(5)</a> <a href="#ref-for-concept-network-error④④">(6)</a> <a href="#ref-for-concept-network-error④⑤">(7)</a> <a href="#ref-for-concept-network-error④⑥">(8)</a> <a href="#ref-for-concept-network-error④⑦">(9)</a>
-    <li><a href="#ref-for-concept-network-error④⑧">4.7. HTTP-network fetch</a> <a href="#ref-for-concept-network-error④⑨">(2)</a> <a href="#ref-for-concept-network-error⑤⓪">(3)</a> <a href="#ref-for-concept-network-error⑤①">(4)</a> <a href="#ref-for-concept-network-error⑤②">(5)</a>
-    <li><a href="#ref-for-concept-network-error⑤③">4.8. CORS-preflight fetch</a> <a href="#ref-for-concept-network-error⑤④">(2)</a> <a href="#ref-for-concept-network-error⑤⑤">(3)</a> <a href="#ref-for-concept-network-error⑤⑥">(4)</a> <a href="#ref-for-concept-network-error⑤⑦">(5)</a>
-    <li><a href="#ref-for-concept-network-error⑤⑧">5.5. Response class</a>
-    <li><a href="#ref-for-concept-network-error⑤⑨">5.6. Fetch method</a>
-    <li><a href="#ref-for-concept-network-error⑥⓪">6.2. Opening handshake</a>
+    <li><a href="#ref-for-concept-network-error④⑧">4.7. HTTP-network fetch</a> <a href="#ref-for-concept-network-error④⑨">(2)</a> <a href="#ref-for-concept-network-error⑤⓪">(3)</a> <a href="#ref-for-concept-network-error⑤①">(4)</a> <a href="#ref-for-concept-network-error⑤②">(5)</a> <a href="#ref-for-concept-network-error⑤③">(6)</a>
+    <li><a href="#ref-for-concept-network-error⑤④">4.8. CORS-preflight fetch</a> <a href="#ref-for-concept-network-error⑤⑤">(2)</a> <a href="#ref-for-concept-network-error⑤⑥">(3)</a> <a href="#ref-for-concept-network-error⑤⑦">(4)</a> <a href="#ref-for-concept-network-error⑤⑧">(5)</a>
+    <li><a href="#ref-for-concept-network-error⑤⑨">5.5. Response class</a>
+    <li><a href="#ref-for-concept-network-error⑥⓪">5.6. Fetch method</a>
+    <li><a href="#ref-for-concept-network-error⑥①">6.2. Opening handshake</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="concept-filtered-response">

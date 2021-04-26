@@ -3480,6 +3480,7 @@ self<c- p>.</c->addEventListener<c- p>(</c-><c- u>"fetch"</c-><c- p>,</c-> event
               </ol>
             </ol>
             <p class="note" role="note"><span>Note:</span> These substeps are meant to produce the observable equivalent of "piping" <var>response</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response-body" id="ref-for-concept-response-body④">body</a>'s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-body-stream" id="ref-for-concept-body-stream②">stream</a> into <var>potentialResponse</var>.</p>
+            <p class="note" role="note"><span>Note:</span> The data written by the service worker in chunks are not guaranteed to read in identical chunks by the client that receives the data. That is, the client will read the same data that was written, but it may be chunked differently by the browser.</p>
            <li data-md>
             <p>Set <var>event</var>’s <a data-link-type="dfn" href="#fetchevent-potential-response" id="ref-for-fetchevent-potential-response">potential response</a> to <var>potentialResponse</var>.</p>
           </ol>
