@@ -896,6 +896,10 @@ def removeMultipleLinks(doc: t.SpecT) -> None:
         if h.hasAncestor(el, lambda x: x.tag in ["pre", "xmp"]):
             # Don't strip out repeated links from opaque elements
             continue
+        linkType = el.get("data-link-type")
+        if linkType in ("biblio", "section"):
+            # Leave biblio links alone.
+            continue
         if (parent := h.parentElement(el)) is not None:
             paras[parent, el.get("href", "")].append(el)
     for links in paras.values():
