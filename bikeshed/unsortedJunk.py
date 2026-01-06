@@ -20,6 +20,10 @@ if t.TYPE_CHECKING:
     from .line import Line
 
 
+# This file is a remnant of Bikeshed's single-file origins, lol.
+# Just a bunch of random functions that haven't been worth finding a better home for.
+
+
 def stripBOM(doc: t.SpecT) -> None:
     if len(doc.lines) >= 1 and doc.lines[0].text[0:1] == "\ufeff":
         doc.lines[0].text = doc.lines[0].text[1:]
