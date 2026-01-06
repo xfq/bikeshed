@@ -890,19 +890,19 @@ def removeMultipleLinks(doc: t.SpecT) -> None:
     # only keep the first.
     if not doc.md.removeMultipleLinks:
         return
-    paras: defaultdict[t.ElementT | None, defaultdict[str, list[t.ElementT]]]
-    paras = defaultdict(lambda: defaultdict(list))
+    paras: defaultdict[tuple[t.ElementT, str], list[t.ElementT]]
+    paras = defaultdict(list)
     for el in h.findAll("a[data-link-type]", doc):
         if h.hasAncestor(el, lambda x: x.tag in ["pre", "xmp"]):
             # Don't strip out repeated links from opaque elements
             continue
-        paras[h.parentElement(el)][el.get("href", "")].append(el)
-    for linkGroups in paras.values():
-        for links in linkGroups.values():
-            if len(links) > 1:
-                for el in links[1:]:
-                    el.tag = "span"
-                    h.removeAttr(el, "href", "data-link-type")
+        if (parent := h.parentElement(el)) is not None:
+            paras[parent, el.get("href", "")].append(el)
+    for links in paras.values():
+        if len(links) > 1:
+            for el in links[1:]:
+                el.tag = "span"
+                h.removeAttr(el, "href", "data-link-type")
 
 
 def processIssuesAndExamples(doc: t.SpecT) -> None:
